@@ -1,0 +1,16 @@
+<dom-module id="smaller-size">
+  <template>
+    <style>
+      :host {
+        --vaadin__size_base: 20px;
+      }
+    </style>
+    <vaadin-button>Should be smaller</vaadin-button>
+    <content></content>
+  </template>
+  <script>
+    Polymer({
+      is: 'smaller-size'
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style>
+    :root {
+      --foo: blue;
+    }
+
+    button {
+      color: var(--foo);
+    }
+
+    button.bar {
+      --foo: red;
+    }
+
+  </style>
+</head>
+
+<body>
+  <button>Button</button>
+  <button class="bar">Button</button>
+</body>
+
+</html>

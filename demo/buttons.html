@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script>
+  window.Polymer = {};
+  window.Polymer.useNativeCssProperties = true;
+  </script>
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../bower_components/polymer/polymer.html">
+  <link rel="import" href="../vaadin-button.html">
+  <link rel="import" href="smaller-size.html">
+
+  <link rel="import" href="../fiat-ui-theme.html">
+  <style is="custom-style" include="fiat-ui-theme"></style>
+
+  <style is="custom-style">
+    :root {
+      --vaadin__fiat-ui__color_warning: orange;
+
+      --my-theme-color: rebeccapurple;
+      --vaadin__size_base: 20px;
+    }
+
+    .smaller vaadin-button {
+      /* This, unfortunately, does not work with the polyfill :( */
+      --vaadin__size_base: 20px;
+      font-size: 14px;
+      margin: 2em 0;
+    }
+
+    vaadin-button.bordered {
+      --vaadin-button__button: {
+        --vaadin__color_primary: red;
+        color: pink;
+      };
+    }
+
+    vaadin-button.bordered-foo {
+      --vaadin-button__button: {
+        color: var(--my-theme-color);
+      };
+    }
+
+  </style>
+</head>
+
+<body>
+  <p style="text-align: center; margin: 3em;">
+    <img src="fiat-ui.png" alt="" style="width: 400px;" />
+  </p>
+<smaller-size>
+
+  <vaadin-button class="large filled">Primary Button</vaadin-button>
+
+  <vaadin-button class="large filled warning">Warning Button</vaadin-button>
+  <vaadin-button class="large filled default">Default Button</vaadin-button>
+  <vaadin-button class="large filled danger">Danger Button</vaadin-button>
+</smaller-size>
+  <div class="smaller">
+    <vaadin-button class="large filled success">Success Button</vaadin-button>
+    <vaadin-button class="large filled default disabled">Disabled Button</vaadin-button>
+  </div>
+
+  <vaadin-button>Plain Button</vaadin-button>
+  <vaadin-button class="bordered">Bordered Button</vaadin-button>
+  <vaadin-button class="bordered-foo">Bordered Button</vaadin-button>
+
+</body>
+
+</html>

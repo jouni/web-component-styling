@@ -1,0 +1,49 @@
+<dom-module id="vaadin-input">
+  <template>
+    <style>
+      :host {
+        display: inline-flex;
+        flex-direction: column;
+      }
+
+      input {
+        order: 2;
+      }
+
+      .error {
+        order: 3;
+      }
+    </style>
+    <input value="[[value]]" id="input">
+    <template is="dom-if" if="[[label]]" restamp="true">
+      <label for="input">[[label]]</label>
+    </template>
+    <template is="dom-if" if="[[error]]" restamp="true">
+      <p class="error">[[error]]</p>
+    </template>
+  </template>
+  <script>
+    Polymer({
+      is: 'vaadin-input',
+      properties: {
+        label: {
+          type: String,
+          reflectToAttribute: true
+        },
+        placeholder: {
+          type: String,
+          reflectToAttribute: true
+        },
+        value: {
+          type: String,
+          reflectToAttribute: true
+        },
+        error: {
+          type: String,
+          reflectToAttribute: true
+        }
+      }
+    });
+
+  </script>
+</dom-module>

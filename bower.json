@@ -1,0 +1,22 @@
+{
+  "name": "elements-theme-2016",
+  "authors": [
+    "Jouni Koivuviita <jouni@jouni.me>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "~1.6.1",
+    "vaadin-grid": "2.0-dev"
+  }
+}

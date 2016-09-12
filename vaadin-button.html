@@ -1,0 +1,39 @@
+<dom-module id="vaadin-button">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+        height: var(--vaadin__size_base);
+        padding: 0 var(--vaadin__size_base);
+        @apply(--vaadin-button);
+      }
+
+      button {
+        font: inherit;
+        border: 0;
+        background: transparent;
+        margin: 0;
+        padding: 0;
+        color: inherit;
+        /*outline: none;*/
+        width: 100%;
+        height: 100%;
+        @apply(--vaadin-button__button);
+      }
+
+      button:focus {
+        @apply(--vaadin-button_focus__button);
+      }
+
+    </style>
+    <button>
+      <content></content>
+    </button>
+  </template>
+  <script>
+    Polymer({
+      is: 'vaadin-button'
+    });
+
+  </script>
+</dom-module>
