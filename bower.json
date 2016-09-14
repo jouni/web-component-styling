@@ -16,7 +16,6 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "~1.6.1",
-    "vaadin-grid": "2.0-dev"
+    "polymer": "~1.6.1"
   }
 }

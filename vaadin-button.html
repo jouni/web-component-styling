@@ -1,38 +1,117 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="vaadin-theme-base.html">
+
 <dom-module id="vaadin-button">
   <template>
     <style>
       :host {
-        display: inline-block;
+        font: inherit;
+        line-height: 1;
+        color: inherit;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
         height: var(--vaadin__size_base);
-        padding: 0 var(--vaadin__size_base);
+        --vaadin-button__padding: calc(var(--vaadin__size_base) * 0.75);
+        padding: 0 var(--vaadin-button__padding);
+        box-sizing: border-box;
+        cursor: default;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-origin: border-box;
         @apply(--vaadin-button);
       }
 
-      button {
-        font: inherit;
-        border: 0;
-        background: transparent;
-        margin: 0;
-        padding: 0;
-        color: inherit;
-        /*outline: none;*/
-        width: 100%;
-        height: 100%;
-        @apply(--vaadin-button__button);
+      :host(.x-small) {
+        font-size: var(--vaadin__font-size_x-small);
+        height: var(--vaadin__size_x-small);
+        padding: 0 calc(var(--vaadin-button__padding) / var(--vaadin__size_ratio) / var(--vaadin__size_ratio));
       }
 
-      button:focus {
-        @apply(--vaadin-button_focus__button);
+      :host(.small) {
+        font-size: var(--vaadin__font-size_small);
+        height: var(--vaadin__size_small);
+        padding: 0 calc(var(--vaadin-button__padding) / var(--vaadin__size_ratio));
+      }
+
+      :host(.large) {
+        font-size: var(--vaadin__font-size_large);
+        height: var(--vaadin__size_large);
+        padding: 0 calc(var(--vaadin-button__padding) * var(--vaadin__size_ratio));
+      }
+
+      :host(.x-large) {
+        font-size: var(--vaadin__font-size_x-large);
+        height: var(--vaadin__size_x-large);
+        padding: 0 calc(var(--vaadin-button__padding) * var(--vaadin__size_ratio) * var(--vaadin__size_ratio));
+      }
+
+      :host(.primary) {
+        color: var(--vaadin__color_primary-contrast);
+        background-color: var(--vaadin__color_primary);
+        @apply(--vaadin-button_primary);
+      }
+
+      :host(:focus) {
+        outline: 2px solid var(--vaadin__color_primary);
+        @apply(--vaadin-button_focus);
+      }
+
+      :host(:active) {
+        @apply(--vaadin-button_active);
+      }
+
+      :host([disabled]) {
+        pointer-events: none;
+        @apply(--vaadin-button_disabled);
+      }
+
+      :host(.outline) {
+        border: var(--vaadin__border-width) solid;
+        background: transparent;
+        box-shadow: none;
+        @apply(--vaadin-button_outline);
+      }
+
+      :host(.outline:focus) {
+        @apply(--vaadin-button_outline_focus);
+      }
+
+      :host(.outline:active) {
+        @apply(--vaadin-button_outline_active);
       }
 
     </style>
-    <button>
-      <content></content>
-    </button>
+    <content></content>
   </template>
   <script>
     Polymer({
-      is: 'vaadin-button'
+      is: 'vaadin-button',
+
+      properties: {
+        pointerFocus: {
+          value: false,
+          reflectToAttribute: true
+        }
+      },
+
+      hostAttributes: {
+        // TODO should set -1 for disabled buttons
+        tabindex: 0
+      },
+
+      listeners: {
+        'mousedown': "_preventDefault"
+      },
+
+      _preventDefault: function(e) {
+        if(!this.pointerFocus) {
+          e.preventDefault();
+        }
+      }
+
     });
 
   </script>
