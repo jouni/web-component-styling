@@ -2,17 +2,14 @@
   <template>
     <style>
       :root {
-        font-family: "Helvetica Neue", sans-serif;
-
-        --vaadin__border-radius: 0.2em;
-
-        --vaadin__gradient_background-image: linear-gradient(rgba(255,255,255,0.2), rgba(0,0,0,0.2));
 
         --vaadin-button: {
+          font-family: "Helvetica Neue", sans-serif;
+          font-size: 15px;
           font-weight: 500;
           color: var(--vaadin__color_shade-800);
-          border: var(--vaadin__border-width) solid var(--vaadin__color_shade-300);
-          border-radius: var(--vaadin__border-radius);
+          border: var(--vaadin__border-width, 1px) solid var(--vaadin__color_shade-300);
+          border-radius: var(--vaadin__border-radius, 0.2em);
           background-color: var(--vaadin__color_shade-100);
           background-image: var(--vaadin__gradient_background-image);
           box-shadow: var(--vaadin__bevel_box-shadow), 0 0.12em 0.24em var(--vaadin__color_shade-200);
@@ -30,7 +27,7 @@
 
         --vaadin-button_active: {
           border-color: var(--vaadin__color_shade-400);
-          box-shadow: inset 0 var(--vaadin__border-width) 0.12em 0 var(--vaadin__color_shade-500);
+          box-shadow: inset 0 var(--vaadin__border-width, 1px) 0.12em 0 var(--vaadin__color_shade-500);
           background-image: var(--vaadin__gradient_background-image), linear-gradient(var(--vaadin__color_shade-100), var(--vaadin__color_shade-100));
         };
 
@@ -38,7 +35,6 @@
           opacity: 0.8;
           background-image: none;
           box-shadow: none;
-          color: var(--vaadin__color_shade-500);
         };
 
         --vaadin-button_primary: {
@@ -50,6 +46,7 @@
         border-color: var(--vaadin__color_shade-500);
       }
 
+      /* This would in reality be user code */
       vaadin-button.custom {
         background-color: orange;
       }

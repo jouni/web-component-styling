@@ -1,0 +1,48 @@
+<dom-module id="vaadin-button-outline-theme">
+  <template>
+    <style>
+      :root {
+        font-family: "Helvetica Neue", sans-serif;
+
+        --vaadin-button: {
+          font-weight: 500;
+          border: var(--vaadin__border-width, 2px) solid var(--vaadin__color_primary);
+          border-radius: var(--vaadin__border-radius, 0.24em);
+          color: var(--vaadin__color_primary);
+        };
+
+        --vaadin-button_focus: {
+          outline: none;
+          background-image: linear-gradient(var(--vaadin__color_tint-300), var(--vaadin__color_tint-300));
+        };
+
+        --vaadin-button_active: {
+          outline: none;
+          color: #fff;
+          background-color: var(--vaadin__color_primary);
+        };
+
+        --vaadin-button_disabled: {
+          background-color: #ddd;
+          border-color: transparent;
+        };
+
+      }
+
+      vaadin-button.primary:active {
+        background-image: linear-gradient(var(--vaadin__color_shade-300), var(--vaadin__color_shade-300));
+      }
+
+      /* This would in reality be user code */
+      vaadin-button.custom {
+        color: orange;
+        border-color: orange;
+
+        --vaadin-button_active: {
+          color: #fff !important;
+          background-color: orange !important;
+        };
+      }
+    </style>
+  </template>
+</dom-module>

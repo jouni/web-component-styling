@@ -12,7 +12,7 @@
         justify-content: center;
         align-items: center;
         height: var(--vaadin__size_base);
-        --vaadin-button__padding: calc(var(--vaadin__size_base) * 0.75);
+        --vaadin-button__padding: calc(var(--vaadin__size_base) * 0.6);
         padding: 0 var(--vaadin-button__padding);
         box-sizing: border-box;
         cursor: default;
@@ -54,6 +54,10 @@
         @apply(--vaadin-button_primary);
       }
 
+      :host(:hover) {
+        @apply(--vaadin-button_hover);
+      }
+
       :host(:focus) {
         outline: 2px solid var(--vaadin__color_primary);
         @apply(--vaadin-button_focus);
@@ -65,14 +69,8 @@
 
       :host([disabled]) {
         pointer-events: none;
+        color: var(--vaadin__color_shade-500);
         @apply(--vaadin-button_disabled);
-      }
-
-      :host(.outline) {
-        border: var(--vaadin__border-width) solid;
-        background: transparent;
-        box-shadow: none;
-        @apply(--vaadin-button_outline);
       }
 
       :host(.outline:focus) {
