@@ -1,0 +1,43 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../vaadin-button.html">
+
+<style is="custom-style">
+  body {
+    margin: var(--vaadin__size_base);
+  }
+</style>
+
+<dom-module id="buttons-demo">
+  <template>
+  <style is="custom-style">
+    vaadin-button {
+      margin-bottom: 30px;
+    }
+  </style>
+    <div>
+      <vaadin-button class="x-small">Extra Small</vaadin-button>
+    </div>
+    <div>
+      <vaadin-button class="small">Small</vaadin-button>
+    </div>
+    <div>
+      <vaadin-button class="">Normal</vaadin-button>
+      <vaadin-button class="primary">Primary</vaadin-button>
+      <vaadin-button class="custom">Custom</vaadin-button>
+      <vaadin-button disabled>Disabled</vaadin-button>
+    </div>
+    <div>
+      <vaadin-button class="large">Large</vaadin-button>
+    </div>
+    <div>
+      <vaadin-button class="x-large">Extra Large</vaadin-button>
+    </div>
+</template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: "buttons-demo"
+  });
+
+</script>

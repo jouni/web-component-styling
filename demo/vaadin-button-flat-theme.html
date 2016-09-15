@@ -4,51 +4,35 @@
       :root {
         font-family: "Helvetica Neue", sans-serif;
 
-        --vaadin-button: {
+        --vaadin-button__theme: {
           font-weight: 300;
+          -webkit-font-smoothing: antialiased;
           border-width: var(--vaadin__border-width, 2px);
           background-color: var(--vaadin__color_primary);
           color: var(--vaadin__color_primary-contrast);
         };
 
-        --vaadin-button_primary: {
+        --vaadin-button__theme_primary: {
           background-color: #07D498;
         };
 
-        --vaadin-button_focus: {
+        --vaadin-button__theme_focus: {
           outline: none;
           background-image: linear-gradient(var(--vaadin__color_tint-300), var(--vaadin__color_tint-300));
         };
 
-        --vaadin-button_active: {
+        --vaadin-button__theme_active: {
           outline: none;
           background-image: linear-gradient(var(--vaadin__color_shade-300), var(--vaadin__color_shade-300));
         };
 
-        --vaadin-button_disabled: {
+        --vaadin-button__theme_disabled: {
           background-color: #ddd;
           color: #fff;
         };
 
       }
 
-      /* This would in reality be user code */
-      vaadin-button.custom {
-        background: transparent;
-        border: var(--vaadin__border-width, 2px) solid var(--vaadin__color_primary);
-        color: var(--vaadin__color_primary);
-
-        --vaadin-button_focus: {
-          outline: none;
-          color: #07D498 !important;
-          border-color: #07D498 !important;
-        };
-
-        --vaadin-button_active: {
-          background-color: var(--vaadin__color_primary) !important;
-          color: var(--vaadin__color_primary-contrast) !important;
-        };
-      }
     </style>
   </template>
 </dom-module>

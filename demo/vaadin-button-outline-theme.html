@@ -6,6 +6,7 @@
 
         --vaadin-button: {
           font-weight: 500;
+          -webkit-font-smoothing: antialiased;
           border: var(--vaadin__border-width, 2px) solid var(--vaadin__color_primary);
           border-radius: var(--vaadin__border-radius, 0.24em);
           color: var(--vaadin__color_primary);
@@ -23,8 +24,8 @@
         };
 
         --vaadin-button_disabled: {
-          background-color: #ddd;
-          border-color: transparent;
+          border-color: var(--vaadin__color_shade-300);
+          background-color: transparent;
         };
 
       }
@@ -33,16 +34,6 @@
         background-image: linear-gradient(var(--vaadin__color_shade-300), var(--vaadin__color_shade-300));
       }
 
-      /* This would in reality be user code */
-      vaadin-button.custom {
-        color: orange;
-        border-color: orange;
-
-        --vaadin-button_active: {
-          color: #fff !important;
-          background-color: orange !important;
-        };
-      }
     </style>
   </template>
 </dom-module>

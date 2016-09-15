@@ -15,12 +15,14 @@
         --vaadin-button__padding: calc(var(--vaadin__size_base) * 0.6);
         padding: 0 var(--vaadin-button__padding);
         box-sizing: border-box;
+        background-origin: border-box;
         cursor: default;
+        outline: none;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
-        background-origin: border-box;
+        @apply(--vaadin-button__theme);
         @apply(--vaadin-button);
       }
 
@@ -51,34 +53,33 @@
       :host(.primary) {
         color: var(--vaadin__color_primary-contrast);
         background-color: var(--vaadin__color_primary);
+        @apply(--vaadin-button__theme_primary);
         @apply(--vaadin-button_primary);
       }
 
       :host(:hover) {
+        @apply(--vaadin-button__theme_hover);
         @apply(--vaadin-button_hover);
       }
 
       :host(:focus) {
-        outline: 2px solid var(--vaadin__color_primary);
+        --vaadin-button__theme_focus: {
+          outline: 2px solid var(--vaadin__color_primary);
+        };
+        @apply(--vaadin-button__theme_focus);
         @apply(--vaadin-button_focus);
       }
 
       :host(:active) {
+        @apply(--vaadin-button__theme_active);
         @apply(--vaadin-button_active);
       }
 
       :host([disabled]) {
         pointer-events: none;
-        color: var(--vaadin__color_shade-500);
+        color: var(--vaadin__color_shade-400);
+        @apply(--vaadin-button__theme_disabled);
         @apply(--vaadin-button_disabled);
-      }
-
-      :host(.outline:focus) {
-        @apply(--vaadin-button_outline_focus);
-      }
-
-      :host(.outline:active) {
-        @apply(--vaadin-button_outline_active);
       }
 
     </style>
