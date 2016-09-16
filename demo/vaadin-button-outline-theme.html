@@ -4,26 +4,25 @@
       :root {
         font-family: "Helvetica Neue", sans-serif;
 
-        --vaadin-button: {
+        --vaadin-button__theme: {
           font-weight: 500;
           -webkit-font-smoothing: antialiased;
-          border: var(--vaadin__border-width, 2px) solid var(--vaadin__color_primary);
+          border: var(--vaadin__border-width, 2px) solid var(--vaadin__color_primary-800);
           border-radius: var(--vaadin__border-radius, 0.24em);
           color: var(--vaadin__color_primary);
         };
 
-        --vaadin-button_focus: {
-          outline: none;
+        --vaadin-button__theme_focus: {
           background-image: linear-gradient(var(--vaadin__color_tint-300), var(--vaadin__color_tint-300));
         };
 
-        --vaadin-button_active: {
+        --vaadin-button__theme_active: {
           outline: none;
-          color: #fff;
+          color: var(--vaadin__color_primary-contrast);
           background-color: var(--vaadin__color_primary);
         };
 
-        --vaadin-button_disabled: {
+        --vaadin-button__theme_disabled: {
           border-color: var(--vaadin__color_shade-300);
           background-color: transparent;
         };
