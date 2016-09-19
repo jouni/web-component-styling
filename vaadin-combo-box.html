@@ -1,0 +1,163 @@
+<link rel="import" href="bower_components/vaadin-combo-box/vaadin-combo-box-light.html">
+<link rel="import" href="bower_components/iron-input/iron-input.html">
+
+
+<dom-module id="vaadin-combo-box">
+  <template>
+    <style>
+      :host {
+        display: inline-flex;
+        font: inherit;
+        position: relative;
+        height: var(--vaadin__size_base);
+
+        @apply(--vaadin-combo-box__theme)
+        @apply(--vaadin-combo-box)
+      }
+
+      vaadin-combo-box-light {
+        display: block;
+        height: 100%;
+      }
+
+      input {
+        height: 100%;
+        line-height: 1em;
+        box-sizing: border-box;
+        margin: 0;
+
+        font: inherit;
+        outline: none;
+        @apply(--vaadin-combo-box_input__theme);
+        @apply(--vaadin-combo-box_input);
+
+        --vaadin-button_input__padding: calc(var(--vaadin__size_base) * 0.6);
+
+        padding: 0 0.3em !important;
+      }
+
+      input:focus {
+        @apply(--vaadin-combo-box_input__theme_focus);
+        @apply(--vaadin-combo-box_input_focus);
+      }
+
+      [suffix] {
+        position: absolute;
+        height: 100%;
+        cursor: pointer;
+      }
+
+      .toggle {
+        top: 0;
+        right: 0;
+        width: 2em;
+        padding: 0;
+        font-size: inherit;
+        @apply(--vaadin-combo-box_togglebutton__theme);
+        @apply(--vaadin-combo-box_togglebutton);
+      }
+
+      .toggle:before {
+        content: "\25BC";
+        @apply(--vaadin-combo-box_togglebutton_before__theme);
+        @apply(--vaadin-combo-box_togglebutton_before);
+      }
+
+      .clear {
+        top: 0;
+        right: 2em;
+        width: 2em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @apply(--vaadin-combo-box_clearbutton__theme);
+        @apply(--vaadin-combo-box_clearbutton;
+      }
+
+      .clear:before {
+        content: "\2715";
+        @apply(--vaadin-combo-box_clearbutton_before__theme);
+        @apply(--vaadin-combo-box_clearbutton_before);
+      }
+
+      #light:not([opened]) .clear,
+      #light:not([has-value]) .clear {
+        display: none;
+      }
+
+      :host(.x-small) {
+        font-size: var(--vaadin__font-size_x-small);
+        height: var(--vaadin__size_x-small);
+      }
+
+      :host(.x-large) {
+        font-size: var(--vaadin__font-size_x-large);
+        height: var(--vaadin__size_x-large);
+      }
+
+      #label {
+        position: absolute;
+        bottom: 100%;
+      }
+
+    </style>
+    <div id="label">[[label]]</div>
+    <vaadin-combo-box-light id="light" items='["foo","ja","bar"]' opened="{{opened}}">
+      <input is="iron-input">
+      <div suffix class="clear" on-tap="_clear"></div>
+      <vaadin-button tabindex="-1" suffix class="toggle" on-tap="_toggle"></vaadin-button>
+    </vaadin-combo-box-light>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'vaadin-combo-box',
+
+      properties: {
+        opened: Boolean
+      },
+
+      _clear: function() {
+        this.$.light._clear();
+      },
+
+      _toggle: function() {
+        this.$.light._toggle();
+      },
+
+      ready: function () {
+        this.async(function () {
+          this.$.light.$.overlay.positionTarget = this;
+        }, 100);
+      }
+    });
+  </script>
+</dom-module>
+
+<style is="custom-style">
+  body vaadin-combo-box-overlay {
+    box-sizing: border-box;
+    @apply(--vaadin-combo-box_overlay__theme);
+    @apply(--vaadin-combo-box_overlay);
+  }
+
+  body vaadin-combo-box-overlay /deep/ #items .item {
+    @apply(--vaadin-combo-box_overlay_item__theme);
+    @apply(--vaadin-combo-box_overlay_item);
+  }
+
+  body vaadin-combo-box-overlay /deep/ #items .item[selected] {
+    @apply(--vaadin-combo-box_overlay_item_selected__theme);
+    @apply(--vaadin-combo-box_overlay_item_selected);
+  }
+
+  body vaadin-combo-box-overlay /deep/ #items .item:hover {
+    @apply(--vaadin-combo-box_overlay_item_hover__theme);
+    @apply(--vaadin-combo-box_overlay_item_hover);
+  }
+
+  body vaadin-combo-box-overlay /deep/ #items .item[focused] {
+    @apply(--vaadin-combo-box_overlay_item_focused__theme);
+    @apply(--vaadin-combo-box_overlay_item_focused);
+  }
+</style>
