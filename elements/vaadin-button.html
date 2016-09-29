@@ -1,0 +1,78 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="vaadin-button">
+  <template>
+    <style>
+      :host {
+        font: inherit;
+        line-height: 1;
+        color: inherit;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        cursor: default;
+        outline: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        @apply(--theme);
+      }
+
+      :host(:focus) {
+        outline: 2px solid;
+        @apply(--theme--focus);
+        @apply(--focus);
+      }
+
+      :host(:hover) {
+        @apply(--theme--hover);
+        @apply(--hover);
+      }
+
+      :host(:active) {
+        @apply(--theme--active);
+        @apply(--active);
+      }
+
+      :host([disabled]) {
+        pointer-events: none;
+        @apply(--theme--disabled);
+        @apply(--disabled);
+      }
+
+    </style>
+    <content></content>
+  </template>
+  <script>
+    Polymer({
+      is: 'vaadin-button',
+
+      properties: {
+        pointerFocus: {
+          value: false,
+          reflectToAttribute: true
+        }
+      },
+
+      hostAttributes: {
+        // TODO should set -1 for disabled buttons
+        tabindex: 0
+      },
+
+      listeners: {
+        'mousedown': "_preventDefault"
+      },
+
+      _preventDefault: function(e) {
+        if (!this.pointerFocus) {
+          e.preventDefault();
+        }
+      }
+
+    });
+
+  </script>
+</dom-module>

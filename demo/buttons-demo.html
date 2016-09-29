@@ -1,38 +1,38 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../vaadin-button.html">
-
-<style is="custom-style">
-  body {
-    margin: var(--vaadin__size_base);
-    font-family: "Helvetica Neue", sans-serif;
-  }
-</style>
+<link rel="import" href="../elements/vaadin-button.html">
+<link rel="import" href="../themes/my-theme.html">
 
 <dom-module id="buttons-demo">
   <template>
+  <style include="my-theme__buttons"></style>
+  <style include="my-theme__fonts--headers"></style>
   <style>
     vaadin-button {
-      margin-bottom: 30px;
+      margin: 0 4px 30px;
+    }
+    vaadin-button.custom {
+      background-color: orange;
+      color: #fff;
     }
   </style>
-    <h1>&lt;vaadin-button&gt;</h1>
+    <h2>Buttons inside another shadow dom</h2>
     <div>
-      <vaadin-button class="x-small">Extra Small</vaadin-button>
+      <vaadin-button class="vaadin-button--x-small">Extra Small</vaadin-button>
     </div>
     <div>
-      <vaadin-button class="small">Small</vaadin-button>
+      <vaadin-button class="vaadin-button--small">Small</vaadin-button>
     </div>
     <div>
       <vaadin-button class="">Normal</vaadin-button>
-      <vaadin-button class="primary">Primary</vaadin-button>
+      <vaadin-button class="vaadin-button--primary">Primary</vaadin-button>
       <vaadin-button class="custom">Custom</vaadin-button>
       <vaadin-button disabled>Disabled</vaadin-button>
     </div>
     <div>
-      <vaadin-button class="large">Large</vaadin-button>
+      <vaadin-button class="vaadin-button--large">Large</vaadin-button>
     </div>
     <div>
-      <vaadin-button class="x-large">Extra Large</vaadin-button>
+      <vaadin-button class="vaadin-button--x-large">Extra Large</vaadin-button>
     </div>
 </template>
 </dom-module>
@@ -41,5 +41,4 @@
   Polymer({
     is: "buttons-demo"
   });
-
 </script>

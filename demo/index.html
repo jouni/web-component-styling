@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Vaadin Elements Theme Demo</title>
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+
+  <link rel="import" href="buttons-demo.html">
+
+  <link rel="import" href="../themes/my-theme.html">
+  <style is="custom-style" include="my-theme__buttons"></style>
+
+  <style is="custom-style">
+    body {
+      margin: var(--vaadin__size--base);
+    }
+  </style>
+
+</head>
+
+<body>
+  <vaadin-button class="vaadin-button--primary">Primary button on index page</vaadin-button>
+  <buttons-demo></buttons-demo>
+</body>
+
+</html>
