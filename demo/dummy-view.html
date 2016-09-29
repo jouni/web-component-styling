@@ -2,19 +2,19 @@
 <link rel="import" href="../elements/vaadin-button.html">
 <link rel="import" href="../themes/my-theme.html">
 
-<dom-module id="buttons-demo">
+<dom-module id="dummy-view">
   <template>
-  <style include="my-theme__buttons"></style>
-  <style include="my-theme__fonts--headers"></style>
-  <style>
-    vaadin-button {
-      margin: 0 4px 30px;
-    }
-    vaadin-button.custom {
-      background-color: orange;
-      color: #fff;
-    }
-  </style>
+    <style include="my-theme__vaadin-button"></style>
+    <style include="my-theme__fonts--headers"></style>
+    <style>
+      vaadin-button {
+        margin: 0 4px 30px;
+      }
+      vaadin-button.custom {
+        background-color: orange;
+        color: #fff;
+      }
+    </style>
     <h2>Buttons inside another shadow dom</h2>
     <div>
       <vaadin-button class="vaadin-button--x-small">Extra Small</vaadin-button>
@@ -30,15 +30,16 @@
     </div>
     <div>
       <vaadin-button class="vaadin-button--large">Large</vaadin-button>
+      <vaadin-button class="vaadin-button--large vaadin-button--primary">Submit</vaadin-button>
     </div>
     <div>
       <vaadin-button class="vaadin-button--x-large">Extra Large</vaadin-button>
     </div>
-</template>
+  </template>
 </dom-module>
 
 <script>
   Polymer({
-    is: "buttons-demo"
+    is: "dummy-view"
   });
 </script>

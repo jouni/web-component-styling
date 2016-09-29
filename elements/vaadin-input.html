@@ -4,17 +4,44 @@
       :host {
         display: inline-flex;
         flex-direction: column;
+
+        @apply(--theme);
       }
 
       input {
         order: 2;
+        @apply(--theme__input);
+        @apply(--input);
+      }
+
+      input:focus {
+        @apply(--theme__input--focus);
+        @apply(--input--focus);
+      }
+
+      label {
+        @apply(--theme__label);
+        @apply(--label);
+      }
+
+      input:focus ~ label {
+        @apply(--theme__label--focus);
+        @apply(--label--focus);
       }
 
       .error {
         order: 3;
+        margin: 0;
+        @apply(--theme__error);
+        @apply(--error);
+      }
+
+      input:focus ~ .error {
+        @apply(--theme__error--focus);
+        @apply(--error--focus);
       }
     </style>
-    <input value="[[value]]" id="input">
+    <input value="[[value]]" id="input" placeholder="[[placeholder]]">
     <template is="dom-if" if="[[label]]" restamp="true">
       <label for="input">[[label]]</label>
     </template>

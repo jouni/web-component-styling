@@ -3,11 +3,17 @@
 <style is="custom-style">
   :root {
     --my-theme__font-family: Hind, sans-serif;
-    --my-theme__font-size: var(--vaadin__font-size--base);
     --my-theme__font-color: var(--vaadin__color--shade-800);
+    --my-theme__font-color--secondary: var(--vaadin__color--shade-700);
 
     --my-theme__ui-control--font: {
-      font: 500 var(--my-theme__font-size) var(--my-theme__font-family);
+      font: 500 var(--vaadin__font-size--base) var(--my-theme__font-family);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale
+    };
+
+    --my-theme__label--font: {
+      font: 400 var(--vaadin__font-size--small) var(--my-theme__font-family);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale
     };
@@ -17,14 +23,12 @@
     --my-theme__primary-color: #4195DA;
     --my-theme__primary-color--contrast: #fff;
 
-    --my-theme__ui-control--height: var(--vaadin__size--base);
-    --my-theme__ui-control--border-radius: 3px;
+    --my-theme__error-color: #E61437;
 
-    --my-theme__button--height: var(--my-theme__ui-control--height);
-    --my-theme__button--box-shadow: 0 1px 1px 1px rgba(0,0,0,0.06), 0 2px 4px 0 rgba(0,0,0,0.03);
-    --my-theme__button--border-radius: var(--my-theme__ui-control--border-radius);
-    --my-theme__button--background-color: #fff;
-    --my-theme__button--font-color: var(--my-theme__primary-color);
+    --my-theme__ui-control--border-radius: 3px;
+    --my-theme__button--box-shadow: 0 1px 2px 1px rgba(0,0,0,0.06), 0 2px 4px 0 rgba(0,0,0,0.03);
+    --my-theme__input--box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 2px 4px 0 rgba(0,0,0,0.05);
+    --my-theme__focus--box-shadow: 0 0 0 4px rgba(0,139,255,0.20);
   }
 
   :root {
@@ -33,32 +37,36 @@
   }
 </style>
 
-<dom-module id="my-theme__buttons">
+<dom-module id="my-theme__vaadin-button">
   <template>
     <style>
       vaadin-button {
         --theme: {
           @apply(--my-theme__ui-control--font);
-          color: var(--my-theme__button--font-color);
-          height: var(--my-theme__button--height);
+          color: var(--my-theme__primary-color);
+          height: var(--vaadin__size--base);
           /* Use padding-top to tweak vertical text centering */
-          padding: 3px calc(var(--my-theme__button--height) * 0.5) 0;
+          padding: 3px calc(var(--vaadin__size--base) * 0.5) 0;
           box-shadow: var(--my-theme__button--box-shadow);
-          border-radius: var(--my-theme__button--border-radius);
-          background-color: var(--my-theme__button--background-color);
-          transition: box-shadow 300ms;
+          border-radius: var(--my-theme__ui-control--border-radius);
+          background-color: #fff;
+          transition: box-shadow 120ms;
         };
 
         --theme--focus: {
           outline: none;
-          box-shadow: 0 0 0 4px rgba(65,149,218,0.30), var(--my-theme__button--box-shadow);
-          transition: box-shadow 120ms;
+          box-shadow: var(--my-theme__focus--box-shadow), var(--my-theme__button--box-shadow);
         };
 
         --theme--hover: {
-          box-shadow: var(--my-theme__button--box-shadow), 0 4px 8px 0 rgba(0,0,0,0.05);
-          transition: box-shadow 300ms;
+          box-shadow: 0 2px 6px 1px rgba(0,0,0,0.05), 0 4px 8px 0 rgba(0,0,0,0.06);
+          transition: box-shadow 240ms;
         };
+
+        --theme--active: {
+          box-shadow: 0 1px 2px 1px rgba(0,0,0,0.1);
+          transition: none;
+        }
       }
 
       .vaadin-button--x-small {
@@ -88,6 +96,63 @@
       .vaadin-button--primary {
         background-color: var(--my-theme__primary-color);
         color: var(--my-theme__primary-color--contrast);
+        padding-left: calc(var(--vaadin__size--base) * 0.64);
+        padding-right: calc(var(--vaadin__size--base) * 0.64);
+      }
+    </style>
+  </template>
+</dom-module>
+
+
+<dom-module id="my-theme__vaadin-input">
+  <template>
+    <style>
+      vaadin-input {
+        --theme: {
+          @apply(--my-theme__ui-control--font);
+        };
+
+        --theme__label: {
+          font-size: var(--vaadin__font-size--small);
+          color: var(--my-theme__font-color);
+          margin-bottom: 0.08em;
+          opacity: 0.8;
+        };
+
+        --theme__input: {
+          font: inherit;
+          color: var(--my-theme__font-color);
+          height: var(--vaadin__size--base);
+          /* Use padding-top to tweak vertical text centering */
+          padding: 3px calc(var(--vaadin__size--base) / 4) 0;
+          box-sizing: border-box;
+          margin: 0;
+          box-shadow: var(--my-theme__input--box-shadow);
+          border: 0;
+          border-radius: var(--my-theme__ui-control--border-radius);
+          background-color: #fff;
+          transition: box-shadow 120ms;
+        };
+
+        --theme__error: {
+          font-size: var(--vaadin__font-size--small);
+          color: var(--my-theme__error-color);
+          margin-top: 0.2em;
+          opacity: 0.5;
+        };
+
+        --theme__input--focus: {
+          outline: none;
+          box-shadow: var(--my-theme__focus--box-shadow), var(--my-theme__input--box-shadow);
+        };
+
+        --theme__label--focus: {
+          opacity: 1;
+        };
+
+        --theme__error--focus: {
+          opacity: 1;
+        };
       }
     </style>
   </template>
