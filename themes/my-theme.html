@@ -9,13 +9,13 @@
     --my-theme__ui-control--font: {
       font: 500 var(--vaadin__font-size--base) var(--my-theme__font-family);
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale
+      -moz-osx-font-smoothing: grayscale;
     };
 
     --my-theme__label--font: {
       font: 400 var(--vaadin__font-size--small) var(--my-theme__font-family);
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale
+      -moz-osx-font-smoothing: grayscale;
     };
 
     --my-theme__background-color--light: #F5F6F7;
@@ -116,6 +116,7 @@
           font-size: var(--vaadin__font-size--small);
           color: var(--my-theme__font-color);
           margin-bottom: 0.08em;
+          margin-left: 0.08em;
           opacity: 0.8;
         };
 
@@ -134,10 +135,15 @@
           transition: box-shadow 120ms;
         };
 
+        --theme__input--placeholder: {
+          font-weight: 400;
+        };
+
         --theme__error: {
           font-size: var(--vaadin__font-size--small);
           color: var(--my-theme__error-color);
           margin-top: 0.2em;
+          margin-left: 0.08em;
           opacity: 0.5;
         };
 

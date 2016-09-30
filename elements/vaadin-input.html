@@ -14,6 +14,11 @@
         @apply(--input);
       }
 
+      input::-webkit-input-placeholder {
+        @apply(--theme__input--placeholder);
+        @apply(--input--placeholder);
+      }
+
       input:focus {
         @apply(--theme__input--focus);
         @apply(--input--focus);
@@ -40,10 +45,15 @@
         @apply(--theme__error--focus);
         @apply(--error--focus);
       }
+
+      input:valid ~ label {
+        @apply(--theme__label--input-has-value);
+        @apply(--label--input-has-value);
+      }
     </style>
-    <input value="[[value]]" id="input" placeholder="[[placeholder]]">
+    <input value="[[value]]" id$="[[_id]]" placeholder="[[placeholder]]" required>
     <template is="dom-if" if="[[label]]" restamp="true">
-      <label for="input">[[label]]</label>
+      <label for$="[[_id]]">[[label]]</label>
     </template>
     <template is="dom-if" if="[[error]]" restamp="true">
       <p class="error">[[error]]</p>
@@ -53,6 +63,10 @@
     Polymer({
       is: 'vaadin-input',
       properties: {
+        _id: {
+          type: String,
+          computed: "_computeId(label)"
+        },
         label: {
           type: String,
           reflectToAttribute: true
@@ -69,6 +83,9 @@
           type: String,
           reflectToAttribute: true
         }
+      },
+      _computeId: function(label) {
+        return "vaadin-input-" + Math.round(Math.random() * 100);
       }
     });
 
