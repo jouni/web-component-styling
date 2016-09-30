@@ -5,9 +5,11 @@
 <dom-module id="dummy-view">
   <template>
     <style include="my-theme__vaadin-button"></style>
+    <style include="my-theme__vaadin-input"></style>
     <style include="my-theme__fonts--headers"></style>
     <style>
-      vaadin-button {
+      vaadin-button,
+      vaadin-input {
         margin: 0 4px 30px;
       }
       vaadin-button.custom {
@@ -15,11 +17,14 @@
         color: #fff;
       }
     </style>
-    <h2>Buttons inside another shadow dom</h2>
+    <h2>Elements inside another shadow dom</h2>
+
+    <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
+    <vaadin-input class="vaadin-input--material" label="vaadin-input--material class" value="Value"></vaadin-input>
+
+
     <div>
       <vaadin-button class="vaadin-button--x-small">Extra Small</vaadin-button>
-    </div>
-    <div>
       <vaadin-button class="vaadin-button--small">Small</vaadin-button>
     </div>
     <div>
@@ -31,8 +36,6 @@
     <div>
       <vaadin-button class="vaadin-button--large">Large</vaadin-button>
       <vaadin-button class="vaadin-button--large vaadin-button--primary">Submit</vaadin-button>
-    </div>
-    <div>
       <vaadin-button class="vaadin-button--x-large">Extra Large</vaadin-button>
     </div>
   </template>
