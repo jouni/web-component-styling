@@ -25,16 +25,18 @@
     .vaadin-input--material {
       --theme__input: {
         border: 0;
-        border-bottom: 2px solid var(--vaadin__color--shade-200);
+        border-bottom: 1px solid var(--vaadin__color--shade-200);
         background: transparent;
         margin: 0;
         padding: 0;
         font: inherit;
         height: 24px;
+        margin-bottom: 1px;
       };
       --theme__input--focus: {
         outline: none;
-        border-color: var(--my-theme__primary-color);
+        border-bottom: 2px solid var(--my-theme__primary-color);
+        margin-bottom: 0;
       };
       --label: {
         transform-origin: 0 50%;
@@ -42,10 +44,7 @@
         opacity: 0.8;
         transition: all 140ms;
       };
-      --label--focus: {
-        transform: none;
-        opacity: 1;
-      };
+
       --label--input-has-value: {
         transform: none;
         opacity: 1;
