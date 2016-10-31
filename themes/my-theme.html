@@ -29,9 +29,15 @@
     --my-theme__button--box-shadow: 0 1px 2px 1px rgba(0,0,0,0.06), 0 2px 4px 0 rgba(0,0,0,0.03);
     --my-theme__input--box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 2px 4px 0 rgba(0,0,0,0.05);
     --my-theme__focus--box-shadow: 0 0 0 4px rgba(0,139,255,0.20);
-  }
 
-  :root {
+    --my-theme__input-label: {
+      font-size: var(--vaadin__font-size--small);
+      color: var(--my-theme__font-color);
+      margin-bottom: 0.08em;
+      margin-left: 0.08em;
+      opacity: 0.8;
+    };
+
     font-family: var(--my-theme__font-family);
     background-color: var(--my-theme__background-color--light);
   }
@@ -119,11 +125,7 @@
         };
 
         --theme__label: {
-          font-size: var(--vaadin__font-size--small);
-          color: var(--my-theme__font-color);
-          margin-bottom: 0.08em;
-          margin-left: 0.08em;
-          opacity: 0.8;
+          @apply(--my-theme__input-label);
         };
 
         --theme__input: {
@@ -179,6 +181,14 @@
       }
     </style>
   </template>
+</dom-module>
+
+<dom-module id="my-theme__all">
+<template>
+  <style include="my-theme__vaadin-button"></style>
+  <style include="my-theme__vaadin-input"></style>
+  <style include="my-theme__fonts--headers"></style>
+</template>
 </dom-module>
 
 

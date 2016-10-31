@@ -10,8 +10,7 @@
   <link rel="import" href="../elements/vaadin-input.html">
 
   <link rel="import" href="../themes/my-theme.html">
-  <style is="custom-style" include="my-theme__vaadin-button"></style>
-  <style is="custom-style" include="my-theme__vaadin-input"></style>
+  <style is="custom-style" include="my-theme__all"></style>
 
   <style is="custom-style">
     body {
@@ -51,6 +50,10 @@
         opacity: 1;
       }
     }
+
+    .legacy-label {
+      @apply(--my-theme__input-label);
+    }
   </style>
 
 </head>
@@ -61,6 +64,9 @@
   <vaadin-input label="Label" placeholder="Placeholder" error="Error message"></vaadin-input>
   <vaadin-input class="vaadin-input--material" label="Label"></vaadin-input>
   <dummy-view></dummy-view>
+
+  <label for="legacy-input" class="legacy-label">Legacy label</label>
+  <input class="legacy-input" id="legacy-input">
 </body>
 
 </html>
