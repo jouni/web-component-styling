@@ -12,26 +12,31 @@
         order: 2;
         @apply(--theme__input);
         @apply(--input);
+        @apply(--vaadin-input__input);
       }
 
       input::-webkit-input-placeholder {
         @apply(--theme__input--placeholder);
         @apply(--input--placeholder);
+        @apply(--vaadin-input__input--placeholder);
       }
 
       input:focus {
         @apply(--theme__input--focus);
         @apply(--input--focus);
+        @apply(--vaadin-input__input--focus);
       }
 
       label {
         @apply(--theme__label);
         @apply(--label);
+        @apply(--vaadin-input__label);
       }
 
       input:focus ~ label {
         @apply(--theme__label--focus);
         @apply(--label--focus);
+        @apply(--vaadin-input__label--focus);
       }
 
       .error {
@@ -39,16 +44,19 @@
         margin: 0;
         @apply(--theme__error);
         @apply(--error);
+        @apply(--vaadin-input__error);
       }
 
       input:focus ~ .error {
         @apply(--theme__error--focus);
         @apply(--error--focus);
+        @apply(--vaadin-input__error--focus);
       }
 
       input:valid ~ label {
         @apply(--theme__label--input-has-value);
         @apply(--label--input-has-value);
+        @apply(--vaadin-input__label--input-has-value);
       }
     </style>
     <input value="[[value]]" id$="[[_id]]" placeholder="[[placeholder]]" required>
