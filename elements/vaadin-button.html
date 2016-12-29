@@ -17,30 +17,25 @@
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
-
-        @apply(--theme);
+        @apply(--vaadin-button);
       }
 
       :host(:focus) {
         outline: 2px solid;
-        @apply(--theme--focus);
-        @apply(--focus);
+        @apply(--vaadin-button--focus);
       }
 
       :host(:hover:not(:active)) {
-        @apply(--theme--hover);
-        @apply(--hover);
+        @apply(--vaadin-button--hover);
       }
 
       :host(:active) {
-        @apply(--theme--active);
-        @apply(--active);
+        @apply(--vaadin-button--active);
       }
 
       :host([disabled]) {
         pointer-events: none;
-        @apply(--theme--disabled);
-        @apply(--disabled);
+        @apply(--vaadin-button--disabled);
       }
 
     </style>
@@ -63,13 +58,23 @@
       },
 
       listeners: {
-        'mousedown': "_preventDefault"
+        "mousedown": "_preventDefault",
+        "focus": "_focus",
+        "blur": "_blur"
       },
 
       _preventDefault: function(e) {
         if (!this.pointerFocus) {
           e.preventDefault();
         }
+      },
+
+      _focus: function(e) {
+        this.toggleClass("vaadin-button--focus", true);
+      },
+
+      _blur: function(e) {
+        this.toggleClass("vaadin-button--focus", false);
       }
 
     });

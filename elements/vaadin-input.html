@@ -4,65 +4,59 @@
       :host {
         display: inline-flex;
         flex-direction: column;
+        @apply(--vaadin-input);
+      }
 
-        @apply(--theme);
+      :host(.vaadin-input--focus) {
+        @apply(--vaadin-input--focus);
       }
 
       input {
-        order: 2;
-        @apply(--theme__input);
-        @apply(--input);
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        border: 0;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
         @apply(--vaadin-input__input);
       }
 
       input::-webkit-input-placeholder {
-        @apply(--theme__input--placeholder);
-        @apply(--input--placeholder);
+        color: inherit;
+        opacity: 0.4;
         @apply(--vaadin-input__input--placeholder);
       }
 
       input:focus {
-        @apply(--theme__input--focus);
-        @apply(--input--focus);
         @apply(--vaadin-input__input--focus);
       }
 
       label {
-        @apply(--theme__label);
-        @apply(--label);
         @apply(--vaadin-input__label);
       }
 
       input:focus ~ label {
-        @apply(--theme__label--focus);
-        @apply(--label--focus);
         @apply(--vaadin-input__label--focus);
       }
 
       .error {
-        order: 3;
         margin: 0;
-        @apply(--theme__error);
-        @apply(--error);
         @apply(--vaadin-input__error);
       }
 
       input:focus ~ .error {
-        @apply(--theme__error--focus);
-        @apply(--error--focus);
         @apply(--vaadin-input__error--focus);
       }
 
       input:valid ~ label {
-        @apply(--theme__label--input-has-value);
-        @apply(--label--input-has-value);
         @apply(--vaadin-input__label--input-has-value);
       }
     </style>
-    <input value="[[value]]" id$="[[_id]]" placeholder="[[placeholder]]" required>
     <template is="dom-if" if="[[label]]" restamp="true">
       <label for$="[[_id]]">[[label]]</label>
     </template>
+    <input value="[[value]]" id$="[[_id]]" placeholder="[[placeholder]]" required on-input="_input" on-focus="_focus" on-blur="_blur">
     <template is="dom-if" if="[[error]]" restamp="true">
       <p class="error">[[error]]</p>
     </template>
@@ -70,6 +64,7 @@
   <script>
     Polymer({
       is: 'vaadin-input',
+
       properties: {
         _id: {
           type: String,
@@ -92,8 +87,21 @@
           reflectToAttribute: true
         }
       },
+
       _computeId: function(label) {
         return "vaadin-input-" + Math.round(Math.random() * 100);
+      },
+
+      _input: function(e) {
+        this.toggleClass("vaadin-input--has-value", e.target.value !== "");
+      },
+
+      _focus: function(e) {
+        this.toggleClass("vaadin-input--focus", true);
+      },
+
+      _blur: function(e) {
+        this.toggleClass("vaadin-input--focus", false);
       }
     });
 

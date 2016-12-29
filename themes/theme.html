@@ -1,0 +1,65 @@
+<dom-module id="theme">
+  <template>
+    <style>
+      :root {
+        --theme__font-family: "Helvetica Neue", sans-serif;
+        --theme__font-size: 16px;
+        --theme__size: 16px;
+        --theme__border-radius: 4px;
+     }
+    </style>
+  </template>
+</dom-module>
+
+<dom-module id="vaadin-button-theme">
+  <template>
+    <style>
+      vaadin-button {
+        --vaadin-button: {
+          height: calc(var(--theme__size) * 2);
+          border: 1px solid;
+          padding: calc(var(--theme__size) / 4) calc(var(--theme__size) / 2);
+          border-radius: var(--theme__border-radius);
+          font-size: var(--theme__font-size);
+          @apply(--vaadin-button--theme);
+        };
+
+        --vaadin-button--active: {
+          background: #eee;
+        };
+      }
+    </style>
+  </template>
+</dom-module>
+
+<dom-module id="vaadin-input-theme">
+  <template>
+    <style>
+      vaadin-input {
+        --vaadin-input: {
+          font-size: var(--theme__font-size);
+        };
+
+        --vaadin-input__input: {
+          height: calc(var(--theme__size) * 2);
+          border: 1px solid;
+          padding: calc(var(--theme__size) / 4) calc(var(--theme__size) / 2);
+          border-radius: var(--theme__border-radius);
+          @apply(--vaadin-input__input--theme);
+        };
+
+        --vaadin-input__input--focus: {
+          outline: none;
+          box-shadow: 0 0 0 2px lightblue;
+        };
+      }
+    </style>
+  </template>
+</dom-module>
+
+<!-- Only for testing purposes -->
+<style is="custom-style">
+  h2, h3 {
+    margin: 1.5em 0 0.5em;
+  }
+</style>

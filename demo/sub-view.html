@@ -1,0 +1,44 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../elements/vaadin-input.html">
+<link rel="import" href="../elements/vaadin-button.html">
+<link rel="import" href="../themes/theme.html">
+
+<dom-module id="sub-view">
+  <template>
+    <style include="theme"></style>
+    <style include="vaadin-button-theme"></style>
+    <style include="vaadin-input-theme"></style>
+    <style>
+      :host {
+        display: block;
+        outline: 1px dashed;
+        padding: var(--theme__size);
+      }
+
+      vaadin-input,
+      vaadin-button {
+        vertical-align: bottom;
+      }
+
+      :root {
+        --theme__size: 12px;
+        --theme__font-size: 12px;
+        font-size: 12px;
+      }
+    </style>
+
+    <div class="shadow">
+      <h3>Inside shadow DOM</h3>
+      <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
+      <vaadin-button>Button</vaadin-button>
+    </div>
+
+    <content></content>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: "sub-view"
+  });
+</script>

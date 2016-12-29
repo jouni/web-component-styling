@@ -3,70 +3,78 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Vaadin Elements Theme Demo</title>
+  <title>proto</title>
   <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
 
-  <link rel="import" href="dummy-view.html">
+  <link rel="import" href="sub-view.html">
   <link rel="import" href="../elements/vaadin-input.html">
+  <link rel="import" href="../elements/vaadin-button.html">
+  <link rel="import" href="../themes/theme.html">
 
-  <link rel="import" href="../themes/my-theme.html">
-  <style is="custom-style" include="my-theme__all"></style>
-
+  <style is="custom-style" include="theme"></style>
+  <style is="custom-style" include="vaadin-button-theme"></style>
+  <style is="custom-style" include="vaadin-input-theme"></style>
   <style is="custom-style">
+    :root {
+      --theme__size: 16px;
+      --theme__font-size: 16px;
+    }
+
     body {
-      margin: calc(var(--vaadin__size--base) * 2);
-    }
-    vaadin-button,
-    vaadin-input {
-      margin: 0 30px 20px 0;
+      margin: var(--theme__size);
+      font-family: var(--theme__font-family);
     }
 
-    .vaadin-input--material {
-      --theme__input: {
-        border: 0;
-        border-bottom: 1px solid var(--vaadin__color--shade-200);
-        background: transparent;
-        margin: 0;
-        padding: 0;
-        font: inherit;
-        height: 24px;
-        margin-bottom: 1px;
-      };
-      --theme__input--focus: {
-        outline: none;
-        border-bottom: 2px solid var(--my-theme__primary-color);
-        margin-bottom: 0;
-      };
-      --label: {
-        transform-origin: 0 50%;
-        transform: translatey(24px);
-        opacity: 0.5;
-        transition: all 140ms;
-        font-size: inherit;
-      };
-
-      --label--input-has-value: {
-        transform: scale(0.8125);
-        opacity: 1;
-      }
+    vaadin-input,
+    vaadin-button {
+      vertical-align: bottom;
     }
 
-    .legacy-label {
-      @apply(--my-theme__input-label);
+    .scope {
+      color: blue;
+      outline: 1px dashed;
+      padding: var(--theme__size);
+    }
+
+    .scope * {
+      color: green;
+      --theme__size: 12px;
+      --theme__font-size: 12px;
+      --theme__border-radius: 12px;
+      --vaadin-input__input--theme: {
+        padding: 0 10px;
+      };
+      --vaadin-button--theme: {
+        padding: 0 10px;
+      };
+    }
+
+    sub-view * {
+      color: red;
+      --theme__size: 28px;
+      /*--theme__font-size: 28px;*/
+      font-size: 28px;
+      --theme__border-radius: 0;
     }
   </style>
-
 </head>
 
 <body>
-  <vaadin-button>Normal button on index page</vaadin-button>
-  <vaadin-button class="vaadin-button--primary">Primary button on index page</vaadin-button>
-  <vaadin-input label="Label" placeholder="Placeholder" error="Error message"></vaadin-input>
-  <vaadin-input class="vaadin-input--material" label="Label"></vaadin-input>
-  <dummy-view></dummy-view>
+  <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
+  <vaadin-button>Button</vaadin-button>
 
-  <label for="legacy-input" class="legacy-label">Legacy label</label>
-  <input class="legacy-input" id="legacy-input">
+  <h2>Block in the same style scope (.scope)</h2>
+  <div class="scope">
+    <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
+    <vaadin-button>Button</vaadin-button>
+  </div>
+
+  <h2>New style scope (&lt;sub-view&gt;)</h2>
+  <sub-view>
+    <h3>Inside light DOM</h3>
+    <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
+    <vaadin-button>Button</vaadin-button>
+  </sub-view>
 </body>
 
 </html>
