@@ -1,0 +1,10 @@
+:root {
+  --theme__font-family: "Helvetica Neue", sans-serif;
+  --theme__size: 16px;
+  --theme__border-radius: 4px;
+}
+
+/* Only for testing purposes */
+h2, h3 {
+  margin: 1.5em 0 0.5em;
+}

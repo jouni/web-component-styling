@@ -3,19 +3,18 @@
 
 <head>
   <meta charset="utf-8">
-  <title>proto</title>
-  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <title>native proto</title>
 
   <link rel="import" href="sub-view.html">
   <link rel="import" href="../elements/vaadin-input.html">
   <link rel="import" href="../elements/vaadin-button.html">
-  <link rel="import" href="../themes/theme.html">
 
-  <style is="custom-style" include="theme"></style>
-  <style is="custom-style" include="vaadin-button-theme"></style>
-  <style is="custom-style" include="vaadin-input-theme"></style>
-  <style is="custom-style">
-    :root {
+  <link rel="stylesheet" href="../themes/theme.css">
+  <link rel="stylesheet" href="../themes/vaadin-button-theme.css">
+  <link rel="stylesheet" href="../themes/vaadin-input-theme.css">
+
+  <style>
+    html {
       --theme__size: 16px;
       --theme__font-size: 16px;
     }
@@ -23,6 +22,7 @@
     body {
       margin: var(--theme__size);
       font-family: var(--theme__font-family);
+      font-size: var(--theme__font-size);
     }
 
     vaadin-input,
@@ -31,30 +31,31 @@
     }
 
     .scope {
-      color: blue;
       outline: 1px dashed;
+      --theme__size: 14px;
       padding: var(--theme__size);
-    }
-
-    .scope * {
-      color: green;
-      --theme__size: 12px;
-      --theme__font-size: 12px;
-      --theme__border-radius: 12px;
+      font-size: 12px;
+      --theme__border-radius: var(--theme__size);
       --vaadin-input__input--theme: {
         padding: 0 10px;
       };
       --vaadin-button--theme: {
-        padding: 0 10px;
+        padding: 0 var(--theme__size);
       };
     }
 
-    sub-view * {
-      color: red;
-      --theme__size: 28px;
-      /*--theme__font-size: 28px;*/
-      font-size: 28px;
+    sub-view {
+      --theme__size: 20px;
+      font-size: 14px;
       --theme__border-radius: 0;
+    }
+
+    sub-view vaadin-button {
+      --vaadin-button--theme: {
+        background: blue;
+        color: white;
+        border: 0;
+      };
     }
   </style>
 </head>

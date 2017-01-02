@@ -1,83 +1,80 @@
-<link rel="import" href="../bower_components/polymer/polymer.html">
+<script>
+  class VaadinButton extends HTMLElement {
+    static get is() { return "vaadin-button"; }
 
-<dom-module id="vaadin-button">
-  <template>
-    <style>
-      :host {
-        font: inherit;
-        line-height: 1;
-        color: inherit;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        box-sizing: border-box;
-        cursor: default;
-        outline: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        @apply(--vaadin-button);
-      }
+    constructor() {
+      super();
+      // this.addEventListener("mousedown", (e) => this._preventDefault(e));
+      // this.addEventListener("focus", (e) => this._focus(e));
+      // this.addEventListener("blur", (e) => this._blur(e));
+      this.setAttribute("tabindex", "0");
+      this.setAttribute("role", "button");
 
-      :host(:focus) {
-        outline: 2px solid;
-        @apply(--vaadin-button--focus);
-      }
-
-      :host(:hover:not(:active)) {
-        @apply(--vaadin-button--hover);
-      }
-
-      :host(:active) {
-        @apply(--vaadin-button--active);
-      }
-
-      :host([disabled]) {
-        pointer-events: none;
-        @apply(--vaadin-button--disabled);
-      }
-
-    </style>
-    <content></content>
-  </template>
-  <script>
-    Polymer({
-      is: 'vaadin-button',
-
-      properties: {
-        pointerFocus: {
-          value: false,
-          reflectToAttribute: true
+      const shadowRoot = this.attachShadow({mode: 'open'});
+      shadowRoot.innerHTML = `
+      <style>
+        :host {
+          font: inherit;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          box-sizing: border-box;
+          cursor: default;
+          outline: none;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          contain: content;
+          @apply --vaadin-button;
         }
-      },
 
-      hostAttributes: {
-        // TODO should set -1 for disabled buttons
-        tabindex: 0
-      },
-
-      listeners: {
-        "mousedown": "_preventDefault",
-        "focus": "_focus",
-        "blur": "_blur"
-      },
-
-      _preventDefault: function(e) {
-        if (!this.pointerFocus) {
-          e.preventDefault();
+        :host::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          pointer-events: none;
+          border-radius: inherit;
         }
-      },
 
-      _focus: function(e) {
-        this.toggleClass("vaadin-button--focus", true);
-      },
+        :host(:focus) {
+          outline: 2px solid;
+          @apply --vaadin-button--focus;
+        }
 
-      _blur: function(e) {
-        this.toggleClass("vaadin-button--focus", false);
-      }
+        :host(:focus)::after {
+          @apply --vaadin-button__pseudo-element--focus;
+        }
 
-    });
+        :host(:hover:not(:active)) {
+          @apply --vaadin-button--hover;
+        }
 
-  </script>
-</dom-module>
+        :host(:hover:not(:active))::after {
+          @apply --vaadin-button__pseudo-element--hover;
+        }
+
+        :host(:active) {
+          @apply --vaadin-button--active;
+        }
+
+        :host(:active)::after {
+          @apply --vaadin-button__pseudo-element--active;
+        }
+
+        :host([disabled]) {
+          pointer-events: none;
+          @apply --vaadin-button--disabled;
+        }
+
+      </style>
+      <slot></slot>
+      `;
+    }
+  }
+
+  customElements.define(VaadinButton.is, VaadinButton);
+</script>
