@@ -1,41 +1,50 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../elements/vaadin-input.html">
 <link rel="import" href="../elements/vaadin-button.html">
 
-<script>
-  class SubView extends HTMLElement {
-    static get is() { return "sub-view"; }
+<link rel="import" href="../themes/theme.html">
+<link rel="import" href="../themes/vaadin-button-theme.html">
+<link rel="import" href="../themes/vaadin-input-theme.html">
 
-    constructor() {
-      super();
+<dom-module id="sub-view">
+  <template>
+    <custom-style>
+      <style is="custom-style" include="my-theme"></style>
+    </custom-style>
 
-      const shadowRoot = this.attachShadow({mode: 'open'});
-      shadowRoot.innerHTML = `
-      <link rel="stylesheet" href="../themes/theme.css">
-      <link rel="stylesheet" href="../themes/vaadin-button-theme.css">
-      <link rel="stylesheet" href="../themes/vaadin-input-theme.css">
-      <style>
-        :host {
-          display: block;
-          outline: 1px dashed;
-          padding: var(--theme__size);
-        }
+    <custom-style>
+      <style is="custom-style" include="vaadin-input-theme"></style>
+    </custom-style>
 
-        vaadin-input,
-        vaadin-button {
-          vertical-align: bottom;
-        }
-      </style>
+    <custom-style>
+      <style is="custom-style" include="vaadin-button-theme"></style>
+    </custom-style>
 
-      <div class="shadow">
-        <h3>Inside shadow DOM</h3>
-        <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
-        <vaadin-button>Button</vaadin-button>
-      </div>
+    <style>
+      :host {
+        display: block;
+        outline: 1px dashed;
+        padding: var(--theme__size);
+      }
 
-      <slot></slot>
-      `;
+      vaadin-input,
+      vaadin-button {
+        vertical-align: bottom;
+      }
+    </style>
+
+    <div class="shadow">
+      <h3>Inside shadow DOM</h3>
+      <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
+      <vaadin-button>Button</vaadin-button>
+    </div>
+
+    <slot></slot>
+  </template>
+  <script>
+    class SubView extends Polymer.Element {
+      static get is() { return "sub-view"; }
     }
-  }
-
-  customElements.define(SubView.is, SubView);
-</script>
+    customElements.define(SubView.is, SubView);
+  </script>
+</dom-module>

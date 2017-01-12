@@ -1,92 +1,98 @@
-<script>
-  class VaadinInput extends HTMLElement {
-    static get is() { return "vaadin-input"; }
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
 
-    constructor() {
-      super();
-
-      const shadowRoot = this.attachShadow({mode: 'open'});
-      shadowRoot.innerHTML = `
-      <style>
-        :host {
-          display: inline-flex;
-          flex-direction: column;
-          @apply --vaadin-input;
-        }
-
-        :host(.vaadin-input--focus) {
-          @apply --vaadin-input--focus;
-        }
-
-        input {
-          background: transparent;
-          color: inherit;
-          font: inherit;
-          border: 0;
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-          @apply --vaadin-input__input;
-        }
-
-        input::-webkit-input-placeholder {
-          color: inherit;
-          opacity: 0.4;
-          @apply --vaadin-input__input--placeholder;
-        }
-
-        input:focus {
-          @apply --vaadin-input__input--focus;
-        }
-
-        label {
-          @apply --vaadin-input__label;
-        }
-
-        input:focus ~ label {
-          @apply --vaadin-input__label--focus;
-        }
-
-        input:valid ~ label {
-          @apply --vaadin-input__label--input-has-value;
-        }
-      </style>
-      <label></label>
-      <input>
-      `;
-
-      this.input = shadowRoot.querySelector("input");
-      this.label = shadowRoot.querySelector("label");
-      this.input.id = this._computeId();
-      this.label.for = this.input.id;
-
-      if (this.hasAttribute("label")) {
-        this.label.innerText = this.getAttribute("label");
+<dom-module id="vaadin-input">
+  <template>
+    <style>
+      :host {
+        display: inline-flex;
+        flex-direction: column;
+        @apply --vaadin-input;
       }
 
-      if (this.hasAttribute("placeholder")) {
-        this.input.placeholder = this.getAttribute("placeholder");
+      :host(.vaadin-input--focus) {
+        @apply --vaadin-input--focus;
       }
 
-      this.input.addEventListener("input", (e) => this._input(e));
+      input {
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        border: 0;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        @apply --vaadin-input__input;
+      }
+
+      input::-webkit-input-placeholder {
+        color: inherit;
+        opacity: 0.4;
+        @apply --vaadin-input__input--placeholder;
+      }
+
+      input:focus {
+        @apply --vaadin-input__input--focus;
+      }
+
+      label {
+        @apply --vaadin-input__label;
+      }
+
+      input:focus ~ label {
+        @apply --vaadin-input__label--focus;
+      }
+
+      input:valid ~ label {
+        @apply --vaadin-input__label--input-has-value;
+      }
+    </style>
+    <label></label>
+    <input>
+  </template>
+  <script>
+    class VaadinInput extends Polymer.Element {
+      static get is() {
+        return "vaadin-input";
+      }
+
+      ready() {
+        super.ready();
+
+        var input = this.root.querySelector("input");
+        var label = this.root.querySelector("label");
+
+        input.id = this._computeId();
+        label.setAttribute("for", input.id);
+
+        if (this.hasAttribute("label")) {
+          label.innerText = this.getAttribute("label");
+        }
+
+        if (this.hasAttribute("placeholder")) {
+          input.placeholder = this.getAttribute("placeholder");
+        }
+
+        input.addEventListener("input", (e) => this._input(e));
+      }
+
+      _computeId() {
+        return "vaadin-input-" + Math.round(Math.random() * 100);
+      }
+
+      _input(e) {
+        this.toggleClass("vaadin-input--has-value", e.target.value !== "");
+      }
+
+      _focus(e) {
+        this.toggleClass("vaadin-input--focus", true);
+      }
+
+      _blur(e) {
+        this.toggleClass("vaadin-input--focus", false);
+      }
     }
 
-    _computeId() {
-      return "vaadin-input-" + Math.round(Math.random() * 100);
-    }
+    customElements.define(VaadinInput.is, VaadinInput);
 
-    _input(e) {
-      this.toggleClass("vaadin-input--has-value", e.target.value !== "");
-    }
-
-    _focus(e) {
-      this.toggleClass("vaadin-input--focus", true);
-    }
-
-    _blur(e) {
-      this.toggleClass("vaadin-input--focus", false);
-    }
-  }
-
-  customElements.define(VaadinInput.is, VaadinInput);
-</script>
+  </script>
+</dom-module>

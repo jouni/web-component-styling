@@ -1,80 +1,84 @@
-<script>
-  class VaadinButton extends HTMLElement {
-    static get is() { return "vaadin-button"; }
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
 
-    constructor() {
-      super();
-      // this.addEventListener("mousedown", (e) => this._preventDefault(e));
-      // this.addEventListener("focus", (e) => this._focus(e));
-      // this.addEventListener("blur", (e) => this._blur(e));
-      this.setAttribute("tabindex", "0");
-      this.setAttribute("role", "button");
+<dom-module id="vaadin-button">
+  <template>
+    <style>
+      :host {
+        font: inherit;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        cursor: default;
+        outline: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        contain: content;
+        height: var(--theme__size);
+        @apply --vaadin-button;
+      }
 
-      const shadowRoot = this.attachShadow({mode: 'open'});
-      shadowRoot.innerHTML = `
-      <style>
-        :host {
-          font: inherit;
-          display: inline-flex;
-          justify-content: center;
-          align-items: center;
-          box-sizing: border-box;
-          cursor: default;
-          outline: none;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-          contain: content;
-          @apply --vaadin-button;
-        }
+      :host::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        pointer-events: none;
+        border-radius: inherit;
+      }
 
-        :host::after {
-          content: "";
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          pointer-events: none;
-          border-radius: inherit;
-        }
+      :host(:focus) {
+        outline: 2px solid;
+        @apply --vaadin-button--focus;
+      }
 
-        :host(:focus) {
-          outline: 2px solid;
-          @apply --vaadin-button--focus;
-        }
+      :host(:focus)::after {
+        @apply --vaadin-button__pseudo-element--focus;
+      }
 
-        :host(:focus)::after {
-          @apply --vaadin-button__pseudo-element--focus;
-        }
+      :host(:hover:not(:active)) {
+        @apply --vaadin-button--hover;
+      }
 
-        :host(:hover:not(:active)) {
-          @apply --vaadin-button--hover;
-        }
+      :host(:hover:not(:active))::after {
+        @apply --vaadin-button__pseudo-element--hover;
+      }
 
-        :host(:hover:not(:active))::after {
-          @apply --vaadin-button__pseudo-element--hover;
-        }
+      :host(:active) {
+        @apply --vaadin-button--active;
+      }
 
-        :host(:active) {
-          @apply --vaadin-button--active;
-        }
+      :host(:active)::after {
+        @apply --vaadin-button__pseudo-element--active;
+      }
 
-        :host(:active)::after {
-          @apply --vaadin-button__pseudo-element--active;
-        }
+      :host([disabled]) {
+        pointer-events: none;
+        @apply --vaadin-button--disabled;
+      }
 
-        :host([disabled]) {
-          pointer-events: none;
-          @apply --vaadin-button--disabled;
-        }
+    </style>
+    <slot></slot>
+  </template>
 
-      </style>
-      <slot></slot>
-      `;
+  <script>
+    class VaadinButton extends Polymer.Element {
+      static get is() {
+        return "vaadin-button";
+      }
+
+      constructor() {
+        super();
+        this.setAttribute("tabindex", "0");
+        this.setAttribute("role", "button");
+      }
     }
-  }
 
-  customElements.define(VaadinButton.is, VaadinButton);
-</script>
+    customElements.define(VaadinButton.is, VaadinButton);
+
+  </script>
+</dom-module>

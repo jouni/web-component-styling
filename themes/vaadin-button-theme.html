@@ -1,0 +1,25 @@
+<dom-module id="vaadin-button-theme">
+  <template>
+    <style>
+      vaadin-button {
+        --vaadin-button: {
+          height: calc(var(--theme__size) * 2);
+          border: 1px solid;
+          padding: calc(var(--theme__size) / 4) calc(var(--theme__size) / 2);
+          border-radius: var(--theme__border-radius);
+          @apply --vaadin-button--theme;
+        };
+
+        --vaadin-button__pseudo-element--active: {
+          background: #000;
+          opacity: 0.1;
+        };
+
+        --vaadin-button--focus: {
+          outline: none;
+          box-shadow: 0 0 0 2px lightblue;
+        }
+      }
+    </style>
+  </template>
+</dom-module>
