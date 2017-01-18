@@ -1,11 +1,13 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/src/styling/custom-style.html">
 
 <dom-module id="vaadin-button">
   <template>
     <style>
       :host {
-        font: inherit;
+        position: relative;
         display: inline-flex;
+        font: inherit;
         justify-content: center;
         align-items: center;
         box-sizing: border-box;
@@ -21,23 +23,15 @@
       }
 
       :host::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        pointer-events: none;
-        border-radius: inherit;
+        @apply --vaadin-button__pseudo--after;
       }
 
       :host(:focus) {
-        outline: 2px solid;
         @apply --vaadin-button--focus;
       }
 
       :host(:focus)::after {
-        @apply --vaadin-button__pseudo-element--focus;
+        @apply --vaadin-button--focus__pseudo--after;
       }
 
       :host(:hover:not(:active)) {
@@ -45,7 +39,7 @@
       }
 
       :host(:hover:not(:active))::after {
-        @apply --vaadin-button__pseudo-element--hover;
+        @apply --vaadin-button--hover__pseudo--after;
       }
 
       :host(:active) {
@@ -53,7 +47,7 @@
       }
 
       :host(:active)::after {
-        @apply --vaadin-button__pseudo-element--active;
+        @apply --vaadin-button--active__pseudo--after;
       }
 
       :host([disabled]) {

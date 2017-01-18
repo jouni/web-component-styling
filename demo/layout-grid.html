@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>layout grid</title>
+
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js" charset="utf-8"></script>
+
+  <link rel="import" href="../elements/vaadin-input.html">
+  <link rel="import" href="../elements/vaadin-button.html">
+
+  <custom-style>
+    <style>
+      html {
+        --grid-size: 8px;
+        --font-grid-size: 8px;
+        --font-base-size: calc(var(--font-grid-size) * 2);
+        --grid-overlay-color: rgba(255, 0, 0, 0.2);
+      }
+
+      body {
+        margin: 20px;
+        font-family: sans-serif;
+      }
+
+      .grid {
+        position: relative;
+        padding: calc(var(--grid-size)* 3);
+        outline: 1px dashed;
+        /*width: calc(var(--grid-size) * 60);*/
+
+        line-height: calc(var(--font-grid-size) * 3);
+        font-size: var(--font-base-size);
+      }
+
+      .grid::before,
+      .grid::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(transparent calc(var(--grid-size) - 1px), var(--grid-overlay-color) var(--grid-size));
+        background-size: var(--grid-size) var(--grid-size);
+        pointer-events: none;
+      }
+
+      .grid::after {
+        background-image: linear-gradient(90deg, transparent calc(var(--grid-size) - 1px), var(--grid-overlay-color) var(--grid-size));
+      }
+
+      .grid :first-child {
+        margin-top: 0;
+      }
+
+      .grid-controls {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translatex(-50%);
+        z-index: 1;
+        background: rgba(255,255,255,0.8);
+        padding: 10px;
+        white-space: nowrap;
+      }
+
+      .grid-controls span {
+        min-width: 3em;
+        display: inline-block;
+        text-align: center;
+        font-size: 14px;
+        vertical-align: top;
+      }
+
+      h2 {
+        line-height: calc(var(--font-grid-size) * 4);
+        font-size: calc(var(--font-base-size) * 2);
+        margin: calc(var(--font-grid-size) * 4) 0;
+        /*outline: 1px solid red;*/
+      }
+
+      p {
+        margin: calc(var(--font-grid-size) * 2.5) 0;
+        /*outline: 1px solid red;*/
+      }
+
+      vaadin-input {
+        /*outline: 1px solid red;*/
+
+        --vaadin-input: {
+          min-width: calc(var(--grid-size) * 24);
+        };
+        --vaadin-input__input: {
+          border: 1px solid rgba(0,0,0,0.2);
+          min-height: calc(var(--grid-size) * 4);
+          line-height: 1.2;
+          padding: calc(var(--grid-size) / 2) calc(var(--grid-size) / 1.5);
+        };
+        --vaadin-input__label: {
+          line-height: 1;
+        }
+      }
+
+      vaadin-button {
+        border: 1px solid rgba(0,0,0,0.2);
+        min-height: calc(var(--grid-size) * 4);
+        line-height: 1.2;
+        padding: calc(var(--grid-size) / 2) calc(var(--grid-size) * 2);
+      }
+
+      .horizontal {
+        display: flex;
+        align-items: flex-end;
+      }
+
+      .horizontal > * {
+        margin-right: var(--grid-size);
+      }
+
+    </style>
+  </custom-style>
+</head>
+
+<body>
+  <div class="grid-controls">
+    <span>Grid size</span> <input type="range" id="grid-size-control" min="4" max="32" value="8"><span>8px</span>
+    <span>Font grid size</span> <input type="range" id="font-size-control" min="2" max="24" value="8"><span>8px</span>
+  </div>
+
+  <div class="grid">
+    <h2>Heading<br>another line</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+    <div class="horizontal">
+      <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
+      <vaadin-button>Button</vaadin-button>
+    </div>
+  </div>
+
+  <script>
+  var range = document.querySelector("#grid-size-control");
+  range.addEventListener("input", function(e) {
+    document.documentElement.style.setProperty("--grid-size", range.value + "px");
+    range.nextSibling.innerHTML = range.value + "px";
+  });
+
+  var range2 = document.querySelector("#font-size-control");
+  range2.addEventListener("input", function(e) {
+    document.documentElement.style.setProperty("--font-grid-size", range2.value + "px");
+    range2.nextSibling.innerHTML = range2.value + "px";
+  });
+  </script>
+</body>
+
+</html>

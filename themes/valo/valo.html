@@ -1,4 +1,7 @@
-<dom-module id="my-theme">
+<link rel="import" href="valo-button.html">
+<link rel="import" href="valo-input.html">
+
+<dom-module id="valo">
   <template>
     <style>
       html {
@@ -12,5 +15,7 @@
         margin: 1.5em 0 0.5em;
       }
     </style>
+    <style is="custom-style" include="valo-button"></style>
+    <style is="custom-style" include="valo-input"></style>
   </template>
 </dom-module>

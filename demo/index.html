@@ -7,25 +7,20 @@
 
   <script src="../bower_components/webcomponentsjs/webcomponents-lite.js" charset="utf-8"></script>
 
-  <link rel="import" href="../bower_components/polymer/polymer.html">
   <link rel="import" href="sub-view.html">
+  <link rel="import" href="sub-view2.html">
   <link rel="import" href="../elements/vaadin-input.html">
   <link rel="import" href="../elements/vaadin-button.html">
 
-  <link rel="import" href="../themes/theme.html">
-  <link rel="import" href="../themes/vaadin-button-theme.html">
-  <link rel="import" href="../themes/vaadin-input-theme.html">
 
+  <link rel="import" href="../themes/valo/valo.html">
   <custom-style>
-    <style is="custom-style" include="my-theme"></style>
+    <style is="custom-style" include="valo"></style>
   </custom-style>
 
+  <link rel="import" href="../themes/material/material.html">
   <custom-style>
-    <style is="custom-style" include="vaadin-input-theme"></style>
-  </custom-style>
-
-  <custom-style>
-    <style is="custom-style" include="vaadin-button-theme"></style>
+    <style is="custom-style" include="material"></style>
   </custom-style>
 
   <custom-style>
@@ -46,7 +41,7 @@
         vertical-align: bottom;
       }
 
-      .scope {
+      /*.scope {
         outline: 1px dashed;
         --theme__size: 14px;
         padding: var(--theme__size);
@@ -72,14 +67,14 @@
           color: white;
           border: 0;
         };
-      }
+      }*/
     </style>
   </custom-style>
 </head>
 
 <body>
-  <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
-  <vaadin-button>Button</vaadin-button>
+  <vaadin-input label="Label"></vaadin-input>
+  <vaadin-button raised>Button</vaadin-button>
 
   <h2>Block in the same style scope (.scope)</h2>
   <div class="scope">
@@ -93,6 +88,13 @@
     <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
     <vaadin-button>Button</vaadin-button>
   </sub-view>
+
+  <h2>New style scope with another theme (&lt;sub-view2&gt;)</h2>
+  <sub-view2>
+    <h3>Inside light DOM</h3>
+    <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
+    <vaadin-button>Button</vaadin-button>
+  </sub-view2>
 </body>
 
 </html>

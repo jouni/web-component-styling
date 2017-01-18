@@ -4,14 +4,14 @@
 <link rel="import" href="../elements/vaadin-input.html">
 <link rel="import" href="../elements/vaadin-button.html">
 
-<link rel="import" href="../themes/material/material.html">
+<link rel="import" href="../themes/valo/valo.html">
+<!-- <link rel="import" href="../themes/material/material.html"> -->
 
-<dom-module id="sub-view">
+<dom-module id="sub-view2">
   <template>
     <custom-style>
-      <style is="custom-style" include="material"></style>
+      <style is="custom-style" include="valo"></style>
     </custom-style>
-
     <style>
       :host {
         display: block;
@@ -34,9 +34,9 @@
     <slot></slot>
   </template>
   <script>
-    class SubView extends Polymer.Element {
-      static get is() { return "sub-view"; }
+    class SubView2 extends Polymer.Element {
+      static get is() { return "sub-view2"; }
     }
-    customElements.define(SubView.is, SubView);
+    customElements.define(SubView2.is, SubView2);
   </script>
 </dom-module>

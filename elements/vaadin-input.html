@@ -1,4 +1,5 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/src/styling/custom-style.html">
 
 <dom-module id="vaadin-input">
   <template>
@@ -9,8 +10,8 @@
         @apply --vaadin-input;
       }
 
-      :host(.vaadin-input--focus) {
-        @apply --vaadin-input--focus;
+      label {
+        @apply --vaadin-input__label;
       }
 
       input {
@@ -21,29 +22,54 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        width: 100%;
         @apply --vaadin-input__input;
       }
 
       input::-webkit-input-placeholder {
         color: inherit;
         opacity: 0.4;
-        @apply --vaadin-input__input--placeholder;
+        @apply --vaadin-input__placeholder;
       }
 
-      input:focus {
-        @apply --vaadin-input__input--focus;
+      :host::after {
+        @apply --vaadin-input__pseudo--after;
       }
 
-      label {
-        @apply --vaadin-input__label;
+      /* Focus selectors */
+
+      :host([focus]) {
+        @apply --vaadin-input--focus;
       }
 
-      input:focus ~ label {
-        @apply --vaadin-input__label--focus;
+      :host([focus]) label {
+        @apply --vaadin-input--focus__label;
       }
 
-      input:valid ~ label {
-        @apply --vaadin-input__label--input-has-value;
+      :host([focus]) input {
+        @apply --vaadin-input--focus__input;
+      }
+
+      :host([focus])::after {
+        @apply --vaadin-input--focus__pseudo--after;
+      }
+
+      /* Empty value selectors */
+
+      :host([empty]:not([placeholder])) {
+        @apply --vaadin-input--empty;
+      }
+
+      :host([empty]:not([placeholder])) input {
+        @apply --vaadin-input--empty__input;
+      }
+
+      :host([empty]:not([placeholder])) label {
+        @apply --vaadin-input--empty__label;
+      }
+
+      :host([empty]:not([placeholder]))::after {
+        @apply --vaadin-input--empty__pseudo--after;
       }
     </style>
     <label></label>
@@ -70,9 +96,13 @@
 
         if (this.hasAttribute("placeholder")) {
           input.placeholder = this.getAttribute("placeholder");
+        } else if(!this.hasAttribute("value")) {
+          this.setAttribute("empty", "");
         }
 
         input.addEventListener("input", (e) => this._input(e));
+        input.addEventListener("focus", (e) => this._focus(e));
+        input.addEventListener("blur", (e) => this._blur(e));
       }
 
       _computeId() {
@@ -80,15 +110,19 @@
       }
 
       _input(e) {
-        this.toggleClass("vaadin-input--has-value", e.target.value !== "");
+        if(e.target.value === "") {
+          this.setAttribute("empty", "")
+        } else {
+          this.removeAttribute("empty");
+        }
       }
 
       _focus(e) {
-        this.toggleClass("vaadin-input--focus", true);
+        this.setAttribute("focus", "");
       }
 
       _blur(e) {
-        this.toggleClass("vaadin-input--focus", false);
+        this.removeAttribute("focus");
       }
     }
 
