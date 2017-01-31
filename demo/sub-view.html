@@ -15,20 +15,17 @@
     <style>
       :host {
         display: block;
-        outline: 1px dashed;
-        padding: var(--theme__size);
-      }
-
-      vaadin-input,
-      vaadin-button {
-        vertical-align: bottom;
       }
     </style>
 
     <div class="shadow">
       <h3>Inside shadow DOM</h3>
-      <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
+      <vaadin-input label="Label"></vaadin-input>
+      <vaadin-input label="With placeholder" placeholder="Placeholder"></vaadin-input>
       <vaadin-button>Button</vaadin-button>
+      <vaadin-button raised>Raised Button</vaadin-button>
+      <vaadin-button disabled>Disabled</vaadin-button>
+      <vaadin-button disabled raised>Disabled</vaadin-button>
     </div>
 
     <slot></slot>

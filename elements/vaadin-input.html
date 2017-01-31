@@ -15,28 +15,30 @@
       }
 
       input {
-        background: transparent;
-        color: inherit;
-        font: inherit;
-        border: 0;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        width: 100%;
         @apply --vaadin-input__input;
       }
 
       input::-webkit-input-placeholder {
-        color: inherit;
-        opacity: 0.4;
-        @apply --vaadin-input__placeholder;
+        @apply --vaadin-input__input-placeholder;
       }
 
-      :host::after {
-        @apply --vaadin-input__pseudo--after;
-      }
+      /*
+      In order to workaround the ShadyCSS polyfill limitations,
+      it is necessary to have explicit mixins for each different state.
 
-      /* Focus selectors */
+      For exapmle, if you declare `border-top` in the default state, and want to
+      override all borders in the focused state, you need to explicitly override
+      `border-top` also in the mixin declaration you target for the focused state,
+      if you use regular CSS selectors to declare the mixin value.
+
+      Just overriding border is not enough, as the that will cause the
+      `border-top` declaration to not have a value in the focused state, but the
+      element will still be setting the border-top value as a custom property.
+
+      See "../themes/valo/valo-input.html" for an example.
+      */
+
+      /* Focused state */
 
       :host([focus]) {
         @apply --vaadin-input--focus;
@@ -50,26 +52,26 @@
         @apply --vaadin-input--focus__input;
       }
 
-      :host([focus])::after {
-        @apply --vaadin-input--focus__pseudo--after;
+      :host([focus]) input::-webkit-input-placeholder {
+        @apply --vaadin-input--focus__input-placeholder;
       }
 
-      /* Empty value selectors */
+      /* Empty state */
 
-      :host([empty]:not([placeholder])) {
+      :host([empty]) {
         @apply --vaadin-input--empty;
       }
 
-      :host([empty]:not([placeholder])) input {
-        @apply --vaadin-input--empty__input;
-      }
-
-      :host([empty]:not([placeholder])) label {
+      :host([empty]) label {
         @apply --vaadin-input--empty__label;
       }
 
-      :host([empty]:not([placeholder]))::after {
-        @apply --vaadin-input--empty__pseudo--after;
+      :host([empty]) input {
+        @apply --vaadin-input--empty__input;
+      }
+
+      :host([empty]) input::-webkit-input-placeholder {
+        @apply --vaadin-input--empty__input-placeholder;
       }
     </style>
     <label></label>
@@ -84,8 +86,8 @@
       ready() {
         super.ready();
 
-        var input = this.root.querySelector("input");
-        var label = this.root.querySelector("label");
+        const input = this.root.querySelector("input");
+        const label = this.root.querySelector("label");
 
         input.id = this._computeId();
         label.setAttribute("for", input.id);
@@ -96,7 +98,9 @@
 
         if (this.hasAttribute("placeholder")) {
           input.placeholder = this.getAttribute("placeholder");
-        } else if(!this.hasAttribute("value")) {
+        }
+
+        if (!this.hasAttribute("value") && !this.hasAttribute("placeholder")) {
           this.setAttribute("empty", "");
         }
 
@@ -110,7 +114,7 @@
       }
 
       _input(e) {
-        if(e.target.value === "") {
+        if(e.target.value === "" && e.target.placeholder == "") {
           this.setAttribute("empty", "")
         } else {
           this.removeAttribute("empty");

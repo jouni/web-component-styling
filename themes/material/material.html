@@ -1,11 +1,17 @@
-<link rel="import" href="material-common.html">
+<link rel="import" href="material-variables.html">
 <link rel="import" href="material-typography.html">
 <link rel="import" href="material-button.html">
 <link rel="import" href="material-input.html">
 
 <dom-module id="material">
   <template>
-    <style is="custom-style" include="material-common"></style>
+    <style>
+      :host {
+        margin: 0;
+        padding: calc(var(--material__size) * 2);
+        background-color: var(--material__color__gray--50);
+      }
+    </style>
     <style is="custom-style" include="material-typography"></style>
     <style is="custom-style" include="material-button"></style>
     <style is="custom-style" include="material-input"></style>

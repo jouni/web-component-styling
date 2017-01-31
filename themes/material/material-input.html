@@ -10,58 +10,72 @@
         --material__input__input__font-size: 16px;
         --material__input__input__color: var(--material__color__text--primary);
         --material__input__input__height: 32px;
-      }
 
-      vaadin-input {
-        --vaadin-input: {
-          margin: var(--material__input__margin);
-          @apply --material-input--theme;
-        };
-
-        --vaadin-input__input: {
-          border: 0;
-          height: var(--material__input__input__height);
-          margin: var(--material__input__input__margin);
-          color: var(--material__input__input__color);
-          font-size: var(--material__input__input__font-size);
-          border-bottom: 1px solid var(--material__color__divider);
-          @apply --material-input__input--theme;
-        };
-
-        --vaadin-input--focus__input: {
-          outline: none;
-        };
-
-        --vaadin-input__label: {
+        --material-input__label: {
           line-height: 1;
           color: var(--material__input__label__color);
           font-size: var(--material__input__label__font-size);
           transform-origin: 0 50%;
           transform: scale(var(--material__input__label__font-scale));
           transition: transform 0.2s;
-          @apply --material-input__label--theme;
+        };
+
+        --material-input__input: {
+          background: transparent;
+          color: inherit;
+          font: inherit;
+          border: 0;
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          width: 100%;
+          outline: none;
+          height: var(--material__input__input__height);
+          margin: var(--material__input__input__margin);
+          color: var(--material__input__input__color);
+          font-size: var(--material__input__input__font-size);
+          border-bottom: 1px solid var(--material__color__divider);
+        };
+      }
+
+      vaadin-input {
+        --vaadin-input: {
+          margin: var(--material__input__margin);
+        };
+
+        --vaadin-input__label: {
+          @apply --material-input__label;
+        };
+
+        --vaadin-input__input: {
+          @apply --material-input__input;
+        };
+
+        --vaadin-input__input-placeholder: {
+          color: inherit;
+          opacity: 0.4;
         };
 
         --vaadin-input--empty__label: {
+          @apply --material-input__label;
           transform: scale(1) translateY(calc(100% + 10px));
           pointer-events: none;
         };
+      }
 
-        --vaadin-input__pseudo--after: {
-          content: "";
-          display: block;
-          width: 100%;
-          height: 2px;
-          margin: -1px 0;
-          background: var(--material__color__primary);
-          transform: scalex(0);
-          transition: transform 0.2s;
-        };
+      vaadin-input::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 2px;
+        margin: -1px 0;
+        background: var(--material__color__primary);
+        transform: scalex(0);
+        transition: transform 0.2s;
+      }
 
-
-        --vaadin-input--focus__pseudo--after: {
-          transform: scale(1);
-        };
+      vaadin-input[focus]::after {
+        transform: scale(1);
       }
     </style>
   </template>

@@ -1,24 +1,74 @@
 <dom-module id="valo-button">
   <template>
     <style>
-      vaadin-button {
-        --vaadin-button: {
-          height: calc(var(--theme__size) * 2);
-          border: 1px solid;
-          padding: calc(var(--theme__size) / 4) calc(var(--theme__size) / 2);
-          border-radius: var(--theme__border-radius);
-          @apply --vaadin-button--theme;
+      html {
+        --valo-button: {
+          font-family: var(--valo__font-family);
+          font-size: 13px;
+          line-height: 1;
+          font-weight: bold;
+          color: #2F2F30;
+          text-shadow: 0 1px 0 rgba(255,255,255,.7);
+          padding: calc(var(--valo__size) / 4) var(--valo__size);
+          border-radius: 3px;
+          box-sizing: border-box;
+          background: linear-gradient(#E8EAEA 6%,#d2d7d8 100%);
+          border: 1px solid #AEB1B2;
+          cursor: pointer;
+          box-shadow: 0 1px 0 rgba(255,255,255,.6), inset 0 2px 0 rgba(255,255,255,.7);
+          min-height: calc(var(--valo__size) * 2);
+          position: relative;
         };
 
-        --vaadin-button__pseudo-element--active: {
-          background: #000;
-          opacity: 0.1;
+        --valo-button--focus: {
+          /*@apply --valo-button;*/
+          box-shadow: 0 0 3px #0060D6;
+          border-color: #4E95E0;
+        };
+
+        --valo-button--active: {
+          @apply --valo-button;
+          background: linear-gradient(#CCCECE 6%, #C0C3C4 100%);
+          border-color: #979899;
+          color: #272728;
+          text-shadow: 0 1px 0 rgba(255,255,255,.4);
+          box-shadow: 0 1px 0 rgba(255,255,255,.6), inset 0 0 2px rgba(0,0,0,.3);
+        };
+      }
+
+      vaadin-button {
+        --vaadin-button: {
+          @apply --valo-button;
         };
 
         --vaadin-button--focus: {
-          outline: none;
-          box-shadow: 0 0 0 2px lightblue;
-        }
+          @apply --valo-button--focus;
+        };
+
+        --vaadin-button--active: {
+          @apply --valo-button--active;
+        };
+      }
+
+      /*
+      These kinds of customizations might be okay to leave outside the
+      theming API of the elements.
+      */
+
+      vaadin-button::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: inherit;
+        background: #000;
+        opacity: 0;
+      }
+
+      vaadin-button:active::after {
+        opacity: 0.1;
       }
     </style>
   </template>

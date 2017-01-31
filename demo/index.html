@@ -18,14 +18,14 @@
     <style is="custom-style" include="valo"></style>
   </custom-style>
 
-  <link rel="import" href="../themes/material/material.html">
+  <!-- <link rel="import" href="../themes/material/material.html">
   <custom-style>
     <style is="custom-style" include="material"></style>
-  </custom-style>
+  </custom-style> -->
 
   <custom-style>
     <style>
-      html {
+      /*html {
         --theme__size: 16px;
         --theme__font-size: 16px;
       }
@@ -34,7 +34,7 @@
         margin: var(--theme__size);
         font-family: var(--theme__font-family);
         font-size: var(--theme__font-size);
-      }
+      }*/
 
       vaadin-input,
       vaadin-button {
@@ -74,26 +74,32 @@
 
 <body>
   <vaadin-input label="Label"></vaadin-input>
-  <vaadin-button raised>Button</vaadin-button>
+  <vaadin-input label="With placeholder" placeholder="Placeholder"></vaadin-input>
+  <vaadin-button>Button</vaadin-button>
+  <vaadin-button raised>Raised Button</vaadin-button>
+  <vaadin-button disabled>Disabled</vaadin-button>
+  <vaadin-button disabled raised>Disabled</vaadin-button>
 
-  <h2>Block in the same style scope (.scope)</h2>
+  <!-- <h2>Block in the same style scope (.scope)</h2>
   <div class="scope">
     <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
     <vaadin-button>Button</vaadin-button>
-  </div>
+  </div> -->
 
-  <h2>New style scope (&lt;sub-view&gt;)</h2>
+  <h2>&lt;sub-view&gt;</h2>
   <sub-view>
     <h3>Inside light DOM</h3>
     <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
     <vaadin-button>Button</vaadin-button>
+    <vaadin-button raised>Raised Button</vaadin-button>
   </sub-view>
 
-  <h2>New style scope with another theme (&lt;sub-view2&gt;)</h2>
+  <h2>&lt;sub-view2&gt;</h2>
   <sub-view2>
     <h3>Inside light DOM</h3>
     <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
     <vaadin-button>Button</vaadin-button>
+    <vaadin-button raised>Raised Button</vaadin-button>
   </sub-view2>
 </body>
 

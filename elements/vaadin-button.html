@@ -5,6 +5,7 @@
   <template>
     <style>
       :host {
+        /* TODO Do we want to prescribe this much default CSS? */
         position: relative;
         display: inline-flex;
         font: inherit;
@@ -18,43 +19,25 @@
         -ms-user-select: none;
         user-select: none;
         contain: content;
-        height: var(--theme__size);
         @apply --vaadin-button;
-      }
-
-      :host::after {
-        @apply --vaadin-button__pseudo--after;
-      }
-
-      :host(:focus) {
-        @apply --vaadin-button--focus;
-      }
-
-      :host(:focus)::after {
-        @apply --vaadin-button--focus__pseudo--after;
       }
 
       :host(:hover:not(:active)) {
         @apply --vaadin-button--hover;
       }
 
-      :host(:hover:not(:active))::after {
-        @apply --vaadin-button--hover__pseudo--after;
+      :host(:focus) {
+        @apply --vaadin-button--focus;
       }
 
       :host(:active) {
         @apply --vaadin-button--active;
       }
 
-      :host(:active)::after {
-        @apply --vaadin-button--active__pseudo--after;
-      }
-
       :host([disabled]) {
         pointer-events: none;
         @apply --vaadin-button--disabled;
       }
-
     </style>
     <slot></slot>
   </template>
