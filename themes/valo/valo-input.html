@@ -1,21 +1,66 @@
 <dom-module id="valo-input">
   <template>
     <style>
-      vaadin-input {
-        --vaadin-input__input: {
-          width: calc(var(--theme__size) * 12);
-          height: calc(var(--theme__size) * 2);
-          border: 1px solid;
-          padding: calc(var(--theme__size) / 4) calc(var(--theme__size) / 2);
-          border-radius: var(--theme__border-radius);
-          /*@apply --vaadin-input__input--theme;*/
+      html {
+        --valo-input__input: {
+          outline: none;
+        	box-sizing: border-box;
+        	font: inherit;
+          line-height: 1;
+        	border: 1px solid;
+          border-color: rgba(0,0,0,.2);
+        	border-top-color: rgba(0,0,0,.3);
+          background: #fff;
+        	color: #333;
+        	padding: calc(var(--valo__grid-size) / 4) calc(var(--valo__grid-size) / 2 + var(--valo__border-radius) / 3);
+        	margin: 0;
+        	border-radius: var(--valo__border-radius);
+        	box-shadow: 0 1px 0 rgba(255,255,255,.6), inset 0 1px 0 rgba(0,0,0,0.05);
+          width: calc(var(--valo__grid-size) * 18);
+          min-height: calc(var(--valo__grid-size) * 3);
         };
 
-        --vaadin-input__input--focus: {
-          outline: none;
-          box-shadow: 0 0 0 2px lightblue;
+        --valo-input__label: {
+          font-size: 0.85em;
+          margin-bottom: calc(var(--valo__grid-size) / 2);
+          color: #666;
+          font-weight: 500;
         };
       }
+
+      vaadin-input {
+        --vaadin-input: {
+          font-family: var(--valo__font-family);
+        };
+
+        --vaadin-input__label: {
+          @apply --valo-input__label;
+        };
+
+        --vaadin-input__input: {
+          @apply --valo-input__input;
+        };
+
+        /* This works as expected */
+        --vaadin-input--focus__input: {
+        	box-shadow: 0 0 0 2px rgba(0, 96, 214, 0.3);
+        	border-color: #4E95E0;
+        };
+      }
+
+      /*
+      The following will not override the border-top from the default state,
+      but will instead fallback to the `initial` value.
+
+      vaadin-input[focus] {
+        --vaadin-input__input: {
+          @apply --valo-input__input;
+          box-shadow: 0 0 3px #0060D6;
+          border-color: #4E95E0;
+        };
+      }
+
+      */
     </style>
   </template>
 </dom-module>

@@ -1,100 +1,31 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta charset="utf-8">
-  <title>polymer 2 proto</title>
-
-  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js" charset="utf-8"></script>
-
-  <link rel="import" href="sub-view.html">
-  <link rel="import" href="sub-view2.html">
-  <link rel="import" href="../elements/vaadin-input.html">
-  <link rel="import" href="../elements/vaadin-button.html">
-
-
-  <link rel="import" href="../themes/valo/valo.html">
-  <custom-style>
-    <style is="custom-style" include="valo"></style>
-  </custom-style>
-
-  <link rel="import" href="../themes/material/material.html">
-  <custom-style>
-    <style is="custom-style" include="material"></style>
-  </custom-style>
-
-  <custom-style>
+  <head>
+    <meta charset="utf-8">
+    <title>Vaadin Core Elements styling/theming proto</title>
     <style>
       html {
-        --theme__size: 16px;
-        --theme__font-size: 16px;
+        height: 100%;
       }
-
       body {
-        margin: var(--theme__size);
-        font-family: var(--theme__font-family);
-        font-size: var(--theme__font-size);
+        display: flex;
+        margin: 0;
+        padding: 20px;
+        height: 100%;
+        box-sizing: border-box;
       }
-
-      vaadin-input,
-      vaadin-button {
-        vertical-align: bottom;
+      iframe {
+        border: 0;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+        margin: 20px;
+        flex: 1;
       }
-
-      /*.scope {
-        outline: 1px dashed;
-        --theme__size: 14px;
-        padding: var(--theme__size);
-        font-size: 12px;
-        --theme__border-radius: var(--theme__size);
-        --vaadin-input__input--theme: {
-          padding: 0 10px;
-        };
-        --vaadin-button--theme: {
-          padding: 0 var(--theme__size);
-        };
-      }
-
-      sub-view {
-        --theme__size: 20px;
-        font-size: 14px;
-        --theme__border-radius: 0;
-      }
-
-      sub-view vaadin-button {
-        --vaadin-button--theme: {
-          background: blue;
-          color: white;
-          border: 0;
-        };
-      }*/
     </style>
-  </custom-style>
-</head>
+  </head>
+  <body>
 
-<body>
-  <vaadin-input label="Label"></vaadin-input>
-  <vaadin-button raised>Button</vaadin-button>
+    <iframe src="material-demo.html"></iframe>
+    <iframe src="valo-demo.html"></iframe>
 
-  <h2>Block in the same style scope (.scope)</h2>
-  <div class="scope">
-    <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
-    <vaadin-button>Button</vaadin-button>
-  </div>
-
-  <h2>New style scope (&lt;sub-view&gt;)</h2>
-  <sub-view>
-    <h3>Inside light DOM</h3>
-    <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
-    <vaadin-button>Button</vaadin-button>
-  </sub-view>
-
-  <h2>New style scope with another theme (&lt;sub-view2&gt;)</h2>
-  <sub-view2>
-    <h3>Inside light DOM</h3>
-    <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
-    <vaadin-button>Button</vaadin-button>
-  </sub-view2>
-</body>
-
+  </body>
 </html>

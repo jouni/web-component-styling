@@ -1,20 +1,18 @@
+<link rel="import" href="valo-variables.html">
+<link rel="import" href="valo-typography.html">
 <link rel="import" href="valo-button.html">
 <link rel="import" href="valo-input.html">
 
 <dom-module id="valo">
   <template>
     <style>
-      html {
-        --theme__font-family: "Helvetica Neue", sans-serif;
-        --theme__size: 16px;
-        --theme__border-radius: 4px;
-      }
-
-      /* Only for testing purposes */
-      h2, h3 {
-        margin: 1.5em 0 0.5em;
+      :host {
+        margin: 0;
+        padding: calc(var(--valo__grid-size) * 2);
+        background-color: #f8f8f8;
       }
     </style>
+    <style is="custom-style" include="valo-typography"></style>
     <style is="custom-style" include="valo-button"></style>
     <style is="custom-style" include="valo-input"></style>
   </template>

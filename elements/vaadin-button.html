@@ -1,10 +1,11 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../bower_components/polymer/src/styling/custom-style.html">
+<!-- <link rel="import" href="../bower_components/polymer/src/styling/custom-style.html"> -->
 
 <dom-module id="vaadin-button">
   <template>
     <style>
       :host {
+        /* TODO Do we want to prescribe this much default CSS? */
         position: relative;
         display: inline-flex;
         font: inherit;
@@ -18,43 +19,28 @@
         -ms-user-select: none;
         user-select: none;
         contain: content;
-        height: var(--theme__size);
-        @apply --vaadin-button;
+        /*@apply --vaadin-button;*/
       }
 
-      :host::after {
-        @apply --vaadin-button__pseudo--after;
+      /*:host(:hover:not(:active)) {
+        @apply --vaadin-button--hover;
       }
 
       :host(:focus) {
         @apply --vaadin-button--focus;
       }
 
-      :host(:focus)::after {
-        @apply --vaadin-button--focus__pseudo--after;
-      }
-
-      :host(:hover:not(:active)) {
-        @apply --vaadin-button--hover;
-      }
-
-      :host(:hover:not(:active))::after {
-        @apply --vaadin-button--hover__pseudo--after;
+      :host([keyboard-focus]) {
+        @apply --vaadin-button--keyboard-focus;
       }
 
       :host(:active) {
         @apply --vaadin-button--active;
-      }
-
-      :host(:active)::after {
-        @apply --vaadin-button--active__pseudo--after;
-      }
+      }*/
 
       :host([disabled]) {
         pointer-events: none;
-        @apply --vaadin-button--disabled;
       }
-
     </style>
     <slot></slot>
   </template>
@@ -67,8 +53,24 @@
 
       constructor() {
         super();
-        this.setAttribute("tabindex", "0");
         this.setAttribute("role", "button");
+
+        if(!this.hasAttribute("disabled")) {
+          this.setAttribute("tabindex", "0");
+        }
+
+        this.addEventListener("keyup", function(e) {
+          if(e.keyCode == 9) {
+            // Tab
+            console.log(e);
+            this.setAttribute("keyboard-focus", "");
+          }
+        }.bind(this));
+
+        this.addEventListener("blur", function(e) {
+          console.log(e);
+          this.removeAttribute("keyboard-focus");
+        }.bind(this));
       }
     }
 

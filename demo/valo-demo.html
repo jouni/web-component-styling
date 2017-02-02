@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Valo theme proto</title>
+
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js" charset="utf-8"></script>
+
+  <link rel="import" href="sub-view2.html">
+  <link rel="import" href="../elements/vaadin-input.html">
+  <link rel="import" href="../elements/vaadin-button.html">
+  <link rel="import" href="size-slider.html">
+  <link rel="import" href="color-picker.html">
+
+  <link rel="import" href="../themes/valo/valo.html">
+  <custom-style>
+    <style is="custom-style" include="valo"></style>
+  </custom-style>
+
+  <custom-style>
+    <style>
+      body {
+        margin: calc(var(--valo__grid-size) * 2);
+        padding-top: 120px;
+      }
+
+      .sizers {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0,0,0,0.5);
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        z-index: 10;
+      }
+
+      .scope {
+        --valo__grid-size: 8px;
+        --valo__font-size: 13px;
+        outline: 1px dashed;
+        padding: var(--valo__grid-size);
+      }
+
+      .container {
+        display: inline-flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+      }
+
+      .container > * {
+        margin: 0 var(--valo__grid-size) calc(var(--valo__grid-size) * 2) 0;
+      }
+
+      sub-view2 vaadin-button {
+        color: blue;
+      }
+    </style>
+  </custom-style>
+</head>
+
+<body>
+  <div class="sizers">
+    <size-slider property="--valo__grid-size"></size-slider>
+    <size-slider property="--valo__font-size"></size-slider>
+    <size-slider property="--valo__border-radius"></size-slider>
+    <color-picker property="--valo__color__gradient--start"></color-picker>
+    <color-picker property="--valo__color__gradient--end"></color-picker>
+    <color-picker property="--valo-button__border-color"></color-picker>
+  </div>
+
+  <div class="container">
+    <vaadin-input label="Label"></vaadin-input>
+    <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
+    <vaadin-input label="Label" value="Focused" focus></vaadin-input>
+    <vaadin-button>Button</vaadin-button>
+    <vaadin-button keyboard-focus>Focused</vaadin-button>
+    <vaadin-button disabled>Disabled</vaadin-button>
+  </div>
+
+  <h2>.scope</h2>
+  <div class="scope container">
+    <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
+    <vaadin-button>Button</vaadin-button>
+  </div>
+
+  <h2>&lt;sub-view2&gt;</h2>
+  <sub-view2>
+    <h3>Inside light DOM</h3>
+    <div class="container">
+      <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
+      <vaadin-button>Button</vaadin-button>
+    </div>
+  </sub-view2>
+</body>
+
+</html>
