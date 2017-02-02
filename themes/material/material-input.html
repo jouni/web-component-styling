@@ -26,6 +26,10 @@
 
       vaadin-input {
         margin: var(--material-input__margin);
+        /* Reserve for the focus underline */
+        padding-bottom: 1px;
+        /* Fix Chrome’s dancing labels */
+        contain: content;
 
         --vaadin-input__label: {
           @apply --material-input__label;
