@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>CSS custom property hierarchy test</title>
+
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js" charset="utf-8"></script>
+  <link rel="import" href="simple-element.html">
+  <link rel="import" href="../bower_components/polymer/src/styling/custom-style.html">
+
+</head>
+
+<body>
+  <h2>Building a hierarchy of CSS custom properties…</h2>
+  <h4>…while still allowing overrides at any DOM level</h4>
+
+  <p>This test case illustrates how we can allow custom properties to build up
+    a hierarchy and how to use them inside mixins so that we allow developers
+    to easily override the property hierarchy on any level of the DOM.</p>
+
+  <custom-style>
+    <style>
+      html {
+        --global-height: 50px;
+      }
+
+      simple-element.one {
+        --simple-element-height: var(--global-height);
+        --test-mixin: {
+          height: var(--simple-element-height);
+        }
+      }
+
+      .scope.one {
+        --global-height: 100px;
+      }
+    </style>
+  </custom-style>
+
+  <pre>
+    html {
+      --global-height: 50px;
+    }
+
+    simple-element {
+      --simple-element-height: var(--global-height);
+      --test-mixin: {
+        height: var(--simple-element-height);
+      }
+    }
+
+    .scope {
+      --global-height: 100px;
+    }
+  </pre>
+
+  <simple-element class="one">I am 50px high</simple-element>
+  <simple-element class="one scope">I am 100px high</simple-element>
+
+  <p>The scope where the mixin is declared affects the values of the custom
+    properties it will use – if this mixin is declared on the html element,
+    the height will not be affected.</p>
+
+  <custom-style>
+    <style>
+      html {
+        --simple-element-height: var(--global-height);
+        --test-mixin: {
+          height: var(--simple-element-height);
+        }
+      }
+
+      .scope.two {
+        --global-height: 100px;
+      }
+    </style>
+  </custom-style>
+
+  <pre>
+    html {
+      --global-height: 50px;
+      --simple-element-height: var(--global-height);
+      --test-mixin: {
+        height: var(--simple-element-height);
+      }
+    }
+
+    .scope {
+      --global-height: 100px;
+    }
+  </pre>
+
+  <simple-element class="two scope">I would want to be 100px high, but I’m not</simple-element>
+
+  <p>So, the best practice when building our themes is to define themed
+    component properties and mixins for the component element instead of
+    the html element.</p>
+  <p>As a secondary goal, re-usable mixins should be declared for both the
+    component element as well as the html element, so that developers can
+    apply the same visual styles to their custom elements as well.</p>
+</body>
+
+</html>

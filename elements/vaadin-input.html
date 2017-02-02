@@ -21,58 +21,6 @@
       input::-webkit-input-placeholder {
         @apply --vaadin-input__input-placeholder;
       }
-
-      /*
-      In order to workaround the ShadyCSS polyfill limitations,
-      it is necessary to have explicit mixins for each different state.
-
-      For example, if you declare `border-top` in the default state, and want to
-      override all borders in the focused state, you need to explicitly override
-      `border-top` also in the mixin declaration you target for the focused state,
-      if you use regular CSS selectors to declare the mixin value.
-
-      Just overriding border is not enough, as the that will cause the
-      `border-top` declaration to not have a value in the focused state, but the
-      element will still be setting the border-top value as a custom property.
-
-      See "../themes/valo/valo-input.html" for an example.
-      */
-
-      /* Focused state */
-
-      :host([focus]) {
-        @apply --vaadin-input--focus;
-      }
-
-      :host([focus]) label {
-        @apply --vaadin-input--focus__label;
-      }
-
-      :host([focus]) input {
-        @apply --vaadin-input--focus__input;
-      }
-
-      :host([focus]) input::-webkit-input-placeholder {
-        @apply --vaadin-input--focus__input-placeholder;
-      }
-
-      /* Empty state */
-
-      :host([empty]) {
-        @apply --vaadin-input--empty;
-      }
-
-      :host([empty]) label {
-        @apply --vaadin-input--empty__label;
-      }
-
-      :host([empty]) input {
-        @apply --vaadin-input--empty__input;
-      }
-
-      :host([empty]) input::-webkit-input-placeholder {
-        @apply --vaadin-input--empty__input-placeholder;
-      }
     </style>
     <label></label>
     <input>
