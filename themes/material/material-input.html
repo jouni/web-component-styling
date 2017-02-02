@@ -33,7 +33,7 @@
 
         --vaadin-input__label: {
           @apply --material-input__label;
-        };
+        }
 
         --vaadin-input__input: {
           background: transparent;
@@ -51,17 +51,12 @@
           color: var(--material-input__input__color);
           font-size: var(--material-input__input__font-size);
           border-bottom: 1px solid var(--material__color__divider);
-        };
+        }
 
         --vaadin-input__input-placeholder: {
           color: inherit;
           opacity: 0.4;
-        };
-
-        /*--vaadin-input--empty__label: {
-          transform: scale(1) translateY(calc(var(--material__grid-size) * 2 + 50%));
-          pointer-events: none;
-        };*/
+        }
       }
 
       vaadin-input[empty] {
@@ -69,7 +64,7 @@
           @apply --material-input__label;
           transform: scale(1) translateY(calc(var(--material__grid-size) * 2 + 50%));
           pointer-events: none;
-        };
+        }
       }
 
       vaadin-input[focus]:not([empty]) {
