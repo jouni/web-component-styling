@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Building themes using selectors vs mixins only</title>
+
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js" charset="utf-8"></script>
+  <link rel="import" href="simple-element.html">
+  <link rel="import" href="../bower_components/polymer/src/styling/custom-style.html">
+</head>
+
+<body>
+  <h2>Exposing component state for theming</h2>
+
+  <p>In order to avoid the mental model issues that mixins incur – the fact
+    that they offer no cascade – it would be easier for developers to have
+    explicit mixins for each different state.</p>
+
+  <p>In this example, we are overriding the background color in both states,
+    but text color only in the "clicked" state.</p>
+
+  <custom-style>
+    <style>
+      .selectors:not(.fixed) {
+        --test-mixin: {
+          color: white;
+          background-color: blue;
+        }
+      }
+
+      .selectors:not(.fixed).state-for-selectors {
+        --test-mixin: {
+          background-color: green;
+        }
+      }
+
+      .mixins {
+        --test-mixin: {
+          color: white;
+          background-color: blue;
+        }
+        --test-state-mixin: {
+          background-color: green;
+        }
+      }
+    </style>
+  </custom-style>
+
+  <pre>
+    /* Using just one set of mixins and selectors for state */
+
+    button {
+      --test-mixin: {
+        color: white;
+        background-color: blue;
+      }
+    }
+
+    button[state] {
+      --test-mixin: {
+        background-color: green;
+      }
+    }
+
+    /* Using state-dependent mixins */
+
+    button {
+      --test-mixin: {
+        color: white;
+        background-color: blue;
+      }
+      --test-state-mixin: {
+        background-color: green;
+      }
+    }
+  </pre>
+
+  <simple-element class="selectors"><span>Click me – my text color is <b>unexpected</b></span></simple-element>
+  <simple-element class="mixins"><span>Click me – my text color is <b>expected</b></span></simple-element>
+
+  <p>When using separate mixins for both states, everything works as expected.
+    But when using selectors, the mixin declaration for the state overrides
+    all of the properties set by the default state, which could be somewhat
+    unexpected for a CSS developer who is not that familiar with mixins yet.</p>
+
+  <p>The solution is to create a shared styles mixin for those properties
+    that should stay the same between states, and apply that to each state
+    explicitly.</p>
+
+  <custom-style>
+    <style>
+      .selectors.fixed {
+        --shared-styles: {
+          color: white;
+        }
+
+        --test-mixin: {
+          @apply --shared-styles;
+          background-color: blue;
+        }
+      }
+
+      .selectors.fixed.state-for-selectors {
+        --test-mixin: {
+          @apply --shared-styles;
+          background-color: green;
+        }
+      }
+    </style>
+  </custom-style>
+
+  <pre>
+    button {
+      --shared-styles: {
+        color: white;
+      }
+
+      --test-mixin: {
+        @apply --shared-styles;
+        background-color: blue;
+      }
+    }
+
+    button[state] {
+      --test-mixin: {
+        @apply --shared-styles;
+        background-color: green;
+      }
+    }
+  </pre>
+
+  <simple-element class="selectors fixed"><span>Click me – my text color is <b>expected</b></span></simple-element>
+
+  <p>The downside of this solution is that it increases the number of CSS
+    declarations on the page (number of properties in the shared styles
+    times the number of additional states).</p>
+
+  <p>The upside of this approach is that the number of mixins is manageable,
+    and the selectors are more flexible for our themes (because of the exposed
+    state in the host element).</p>
+
+</body>
+
+</html>
