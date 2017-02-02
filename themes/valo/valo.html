@@ -1,4 +1,5 @@
 <link rel="import" href="valo-variables.html">
+<link rel="import" href="valo-typography.html">
 <link rel="import" href="valo-button.html">
 <link rel="import" href="valo-input.html">
 
@@ -7,10 +8,11 @@
     <style>
       :host {
         margin: 0;
-        padding: calc(var(--material__size) * 2);
+        padding: calc(var(--valo__grid-size) * 2);
         background-color: #f8f8f8;
       }
     </style>
+    <style is="custom-style" include="valo-typography"></style>
     <style is="custom-style" include="valo-button"></style>
     <style is="custom-style" include="valo-input"></style>
   </template>

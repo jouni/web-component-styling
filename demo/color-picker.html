@@ -1,0 +1,70 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<dom-module id="color-picker">
+  <template>
+    <style>
+      :host {
+        display: inline-flex;
+        flex-direction: column;
+      }
+      label {
+        font-size: 12px;
+      }
+    </style>
+    <label></label>
+    <input type="color" property="{{property}}" on-input="_input">
+  </template>
+
+  <script>
+    class ColorPicker extends Polymer.Element {
+      static get is() {
+        return "color-picker";
+      }
+
+      static get config() {
+        return {
+          properties: {
+            property: {
+              type: String,
+              observer: "_propertyChanged"
+            },
+            value: {
+              type: String,
+              observer: "_valueChanged"
+            }
+          }
+        };
+      }
+
+      constructor() {
+        super();
+      }
+
+      _propertyChanged(property, oldProperty) {
+        if (oldProperty === undefined) {
+          // Read initial value from computed style
+          setTimeout(function() {
+            var initialValue = getComputedStyle(document.documentElement).getPropertyValue(property);
+            this.root.querySelector("label").innerHTML = this.property;
+            this.value = initialValue;
+          }.bind(this), 100);
+        }
+      }
+
+      _valueChanged(value, oldValue) {
+        if(value !== oldValue) {
+          this.root.querySelector("input").value = value.trim();
+          document.documentElement.style.setProperty(this.property, value);
+        }
+      }
+
+      _input(e) {
+        this.value = (e.target || e.path[0]).value;
+      }
+
+    }
+
+    customElements.define(ColorPicker.is, ColorPicker);
+
+  </script>
+</dom-module>

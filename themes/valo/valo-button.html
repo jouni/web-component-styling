@@ -2,73 +2,77 @@
   <template>
     <style>
       html {
+        --valo-button__border-color: #afafaf;
+
         --valo-button: {
           font-family: var(--valo__font-family);
-          font-size: 13px;
+          font-size: var(--valo__font-size);
           line-height: 1;
-          font-weight: bold;
+          font-weight: 500;
           color: #2F2F30;
           text-shadow: 0 1px 0 rgba(255,255,255,.7);
-          padding: calc(var(--valo__size) / 4) var(--valo__size);
-          border-radius: 3px;
+          padding: calc(var(--valo__grid-size) / 1.5) calc(var(--valo__grid-size) * 1.5);
+          border-radius: var(--valo__border-radius);
           box-sizing: border-box;
-          background: linear-gradient(#E8EAEA 6%,#d2d7d8 100%);
-          border: 1px solid #AEB1B2;
+          /*background: linear-gradient(#E8EAEA 6%,#d2d7d8 100%);*/
+          background-color: var(--valo__color__base);
+          background-image: var(--valo__gradient);
+          border: 1px solid var(--valo-button__border-color);
           cursor: pointer;
-          box-shadow: 0 1px 0 rgba(255,255,255,.6), inset 0 2px 0 rgba(255,255,255,.7);
-          min-height: calc(var(--valo__size) * 2);
+          box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+          min-height: calc(var(--valo__grid-size) * 3);
           position: relative;
         };
 
         --valo-button--focus: {
-          /*@apply --valo-button;*/
-          box-shadow: 0 0 3px #0060D6;
+          box-shadow: 0 0 0 2px rgba(0, 96, 214, 0.3);
           border-color: #4E95E0;
         };
 
         --valo-button--active: {
-          @apply --valo-button;
-          background: linear-gradient(#CCCECE 6%, #C0C3C4 100%);
-          border-color: #979899;
+          /*background: linear-gradient(#CCCECE 6%, #C0C3C4 100%);*/
+          background-image: linear-gradient(var(--valo__color__gradient--end), var(--valo__color__gradient--end));
+          /*border-color: #979899;*/
           color: #272728;
           text-shadow: 0 1px 0 rgba(255,255,255,.4);
           box-shadow: 0 1px 0 rgba(255,255,255,.6), inset 0 0 2px rgba(0,0,0,.3);
         };
+
+        --valo-button--disabled: {
+          color: #666;
+          background: #C0C3C4;
+          box-shadow: none;
+        };
       }
 
-      vaadin-button {
+      /*vaadin-button {
         --vaadin-button: {
           @apply --valo-button;
         };
 
-        --vaadin-button--focus: {
+        --vaadin-button--keyboard-focus: {
           @apply --valo-button--focus;
         };
 
         --vaadin-button--active: {
           @apply --valo-button--active;
         };
+      }*/
+
+      vaadin-button {
+        @apply --valo-button;
       }
 
-      /*
-      These kinds of customizations might be okay to leave outside the
-      theming API of the elements.
-      */
-
-      vaadin-button::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        border-radius: inherit;
-        background: #000;
-        opacity: 0;
+      vaadin-button[keyboard-focus] {
+        @apply --valo-button--focus;
       }
 
-      vaadin-button:active::after {
-        opacity: 0.1;
+      vaadin-button:active {
+        @apply --valo-button--active;
+      }
+
+      vaadin-button[disabled] {
+        @apply --valo-button--disabled;
       }
     </style>
   </template>

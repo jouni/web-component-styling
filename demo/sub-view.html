@@ -16,16 +16,29 @@
       :host {
         display: block;
       }
+
+      .container {
+        display: inline-flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+      }
+
+      .container > * {
+        margin: 0 var(--material__grid-size) calc(var(--material__grid-size) * 2) 0;
+      }
     </style>
 
     <div class="shadow">
       <h3>Inside shadow DOM</h3>
-      <vaadin-input label="Label"></vaadin-input>
-      <vaadin-input label="With placeholder" placeholder="Placeholder"></vaadin-input>
-      <vaadin-button>Button</vaadin-button>
-      <vaadin-button raised>Raised Button</vaadin-button>
-      <vaadin-button disabled>Disabled</vaadin-button>
-      <vaadin-button disabled raised>Disabled</vaadin-button>
+      <div class="container">
+        <vaadin-input label="Label"></vaadin-input>
+        <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
+        <vaadin-input label="Label" placeholder="Focused" focus></vaadin-input>
+        <vaadin-button>Button</vaadin-button>
+        <vaadin-button raised>Raised</vaadin-button>
+        <vaadin-button disabled>Disabled</vaadin-button>
+        <vaadin-button disabled raised>Disabled</vaadin-button>
+      </div>
     </div>
 
     <slot></slot>

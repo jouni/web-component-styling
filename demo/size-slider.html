@@ -1,0 +1,75 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<dom-module id="size-slider">
+  <template>
+    <style>
+      :host {
+        display: inline-flex;
+        flex-direction: column;
+      }
+      label {
+        font-size: 12px;
+      }
+    </style>
+    <label></label>
+    <input type="range" value="[[value]]" on-input="_input">
+  </template>
+
+  <script>
+    class SizeSlider extends Polymer.Element {
+      static get is() {
+        return "size-slider";
+      }
+
+      static get config() {
+        return {
+          properties: {
+            property: {
+              type: String,
+              observer: "_propertyChanged"
+            },
+            value: {
+              type: String,
+              observer: "_valueChanged"
+            }
+          }
+        };
+      }
+
+      constructor() {
+        super();
+      }
+
+      _propertyChanged(property, oldProperty) {
+        if (oldProperty === undefined) {
+          // Read initial value from computed style
+          setTimeout(function() {
+            var initialValue = parseInt(getComputedStyle(document.documentElement).getPropertyValue(property));
+            console.log(initialValue);
+            this.value = initialValue;
+            // this.root.querySelector("input").min = Math.floor(this.value / 2);
+            this.root.querySelector("input").max = Math.ceil(this.value * 3);
+          }.bind(this), 100);
+        }
+      }
+
+      _valueChanged(value, oldValue) {
+        if(value !== oldValue) {
+          document.documentElement.style.setProperty(this.property, value + "px");
+          this.root.querySelector("label").innerHTML = this.property + " " + this.value + "px";
+        }
+      }
+
+      _input(e) {
+        this.value = (e.target || e.path[0]).value;
+      }
+
+      _change(e) {
+      }
+
+    }
+
+    customElements.define(SizeSlider.is, SizeSlider);
+
+  </script>
+</dom-module>
