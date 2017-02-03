@@ -62,13 +62,11 @@
         this.addEventListener("keyup", function(e) {
           if(e.keyCode == 9) {
             // Tab
-            console.log(e);
             this.setAttribute("keyboard-focus", "");
           }
         }.bind(this));
 
         this.addEventListener("blur", function(e) {
-          console.log(e);
           this.removeAttribute("keyboard-focus");
         }.bind(this));
       }

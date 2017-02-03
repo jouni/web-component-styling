@@ -55,6 +55,10 @@
         if(value !== oldValue) {
           this.root.querySelector("input").value = value.trim();
           document.documentElement.style.setProperty(this.property, value);
+          var props = {};
+          props[this.property] = value;
+          ShadyCSS.updateStyles(props);
+          // ShadyCSS.updateStyles();
         }
       }
 
