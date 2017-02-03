@@ -26,14 +26,15 @@
 
       vaadin-input {
         margin: var(--material-input__margin);
-        /* Reserve for the focus underline */
-        padding-bottom: 1px;
+        /* Reserve for the underline */
+        position: relative;
+        padding-bottom: 2px;
         /* Fix Chrome’s dancing labels */
         contain: content;
 
         --vaadin-input__label: {
           @apply --material-input__label;
-        };
+        }
 
         --vaadin-input__input: {
           background: transparent;
@@ -46,22 +47,16 @@
           width: 100%;
           outline: none;
           width: calc(var(--material__grid-size) * 20);
-          height: calc(var(--material__grid-size) * 4);
+          height: calc(var(--material__grid-size) * 4 - 1px);
           margin: var(--material-input__input__margin);
           color: var(--material-input__input__color);
           font-size: var(--material-input__input__font-size);
-          border-bottom: 1px solid var(--material__color__divider);
-        };
+        }
 
         --vaadin-input__input-placeholder: {
           color: inherit;
           opacity: 0.4;
-        };
-
-        /*--vaadin-input--empty__label: {
-          transform: scale(1) translateY(calc(var(--material__grid-size) * 2 + 50%));
-          pointer-events: none;
-        };*/
+        }
       }
 
       vaadin-input[empty] {
@@ -69,7 +64,7 @@
           @apply --material-input__label;
           transform: scale(1) translateY(calc(var(--material__grid-size) * 2 + 50%));
           pointer-events: none;
-        };
+        }
       }
 
       vaadin-input[focus]:not([empty]) {
@@ -79,12 +74,24 @@
         }
       }
 
+      vaadin-input::before,
       vaadin-input::after {
         content: "";
         display: block;
-        width: 100%;
+        left: 0;
+        right: 0;
+        position: absolute;
+      }
+
+      vaadin-input::before {
+        height: 1px;
+        bottom: 1px;
+        background: var(--material__color__divider);
+      }
+
+      vaadin-input::after {
         height: 2px;
-        margin: -1px 0;
+        bottom: 0;
         background: var(--material__color__primary);
         transform: scalex(0);
         transition: transform 0.2s;

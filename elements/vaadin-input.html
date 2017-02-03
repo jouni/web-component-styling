@@ -7,7 +7,6 @@
       :host {
         display: inline-flex;
         flex-direction: column;
-        @apply --vaadin-input;
       }
 
       label {
@@ -19,6 +18,14 @@
       }
 
       input::-webkit-input-placeholder {
+        @apply --vaadin-input__input-placeholder;
+      }
+
+      input::-ms-input-placeholder {
+        @apply --vaadin-input__input-placeholder;
+      }
+
+      input::placeholder {
         @apply --vaadin-input__input-placeholder;
       }
     </style>
@@ -71,14 +78,17 @@
         } else {
           this.removeAttribute("empty");
         }
+        this.updateStyles();
       }
 
       _focus(e) {
         this.setAttribute("focus", "");
+        this.updateStyles();
       }
 
       _blur(e) {
         this.removeAttribute("focus");
+        this.updateStyles();
       }
     }
 
