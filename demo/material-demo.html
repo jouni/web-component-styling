@@ -4,8 +4,14 @@
 <head>
   <meta charset="utf-8">
   <title>Material theme proto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <script src="../bower_components/webcomponentsjs/webcomponents-lite.js" charset="utf-8"></script>
+
+  <!-- Enable :active styles for iOS -->
+  <script>
+    document.addEventListener("touchstart", function() {},false);
+  </script>
 
   <link rel="import" href="sub-view.html">
   <link rel="import" href="../elements/vaadin-input.html">
