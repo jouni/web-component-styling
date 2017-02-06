@@ -15,10 +15,16 @@
 
   <p>In order to avoid the mental model issues that mixins incur – the fact
     that they offer no cascade – it would be easier for developers to have
-    explicit mixins for each different state.</p>
+    explicit mixins for each different state. But this quickly results in
+    a huge number of mixins to expose and maintain, which is not great for
+    us. So it would be better to just have one mixin per each sub-part of a
+    component.</p>
 
   <p>In this example, we are overriding the background color in both states,
-    but text color only in the "clicked" state.</p>
+    but text color only in the "clicked" state. The "button component" has one
+    sub-part and exposes two mixins for it, one for the default state
+    (<code>--test-mixin</code>) and one for the toggled/clicked state
+    (<code>--test-state-mixin</code>).</p>
 
   <custom-style>
     <style>
@@ -48,6 +54,18 @@
   </custom-style>
 
   <pre>
+    /* Using state-dependent mixins */
+
+    button {
+      --test-mixin: {
+        color: white;
+        background-color: blue;
+      }
+      --test-state-mixin: {
+        background-color: green;
+      }
+    }
+
     /* Using just one set of mixins and selectors for state */
 
     button {
@@ -59,18 +77,6 @@
 
     button[state] {
       --test-mixin: {
-        background-color: green;
-      }
-    }
-
-    /* Using state-dependent mixins */
-
-    button {
-      --test-mixin: {
-        color: white;
-        background-color: blue;
-      }
-      --test-state-mixin: {
         background-color: green;
       }
     }
@@ -139,6 +145,30 @@
   <p>The upside of this approach is that the number of mixins is manageable,
     and the selectors are more flexible for our themes (because of the exposed
     state in the host element).</p>
+
+  <h3>But selectors won’t pierce the shadow DOM boundary?</h3>
+
+  <p>We don’t consider this as a limitation, but rather as a feature, making the
+    use of themes more explicit. This way, the developer explicitly opts-in to
+    using the themes they wish inside each shadow DOM.</p>
+
+  <p>We still provide high level CSS custom properties and component mixins to
+    customize the themes, but any complex customizations do not automatically
+    apply cross shadow boundaries. To apply complex customizations to all
+    component instances across all shadow boundaries, the developer needs to
+    package those customizations in a new style module and explicitly import
+    and include it in all shadow roots.</p>
+
+  <p>We also avoid introducing unnecessary API with this (high number of
+    state-dependent mixins), and keep our styling API more future-proof, as it
+    looks we will get better CSS features to cover the styling/theming use case
+    in the future in the form of
+    <a href="https://github.com/w3c/webcomponents/issues/300#issuecomment-276210974">
+    shadow-piercing custom pseudo class selectors</a>. It is easy for us to then
+    change our themes so that they utilize those features and open up more
+    possibilies for global theming for the developer without breaking that much
+    existing API (we might just replace the sub-part mixins with custom pseudo
+    classes).</p>
 
 </body>
 
