@@ -59,7 +59,7 @@
         }
       }
 
-      vaadin-input[empty] {
+      vaadin-input:not([has-value]):not([placeholder]) {
         --vaadin-input__label: {
           @apply --material-input__label;
           transform: scale(1) translateY(calc(var(--material__grid-size) * 2 + 50%));
@@ -67,7 +67,7 @@
         }
       }
 
-      vaadin-input[focus]:not([empty]) {
+      vaadin-input[focused] {
         --vaadin-input__label: {
           @apply --material-input__label;
           color: var(--material__color__primary);
@@ -97,7 +97,7 @@
         transition: transform 0.2s;
       }
 
-      vaadin-input[focus]::after {
+      vaadin-input[focused]::after {
         transform: scale(1);
       }
     </style>
