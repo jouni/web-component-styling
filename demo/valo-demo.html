@@ -28,6 +28,7 @@
       body {
         margin: calc(var(--valo__grid-size) * 2);
         padding-top: 120px;
+        background: var(--valo__color__base);
       }
 
       .sizers {
@@ -79,9 +80,16 @@
   <div class="container">
     <vaadin-input label="Label"></vaadin-input>
     <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
-    <vaadin-input label="Label" value="Focused" focus></vaadin-input>
+    <vaadin-input label="Label" value="Focused" focused></vaadin-input>
+    <vaadin-input label="Suffix and prefix" value="Value">
+      <span slot="prefix">A</span>
+      <span slot="prefix-inside">B</span>
+      <span slot="suffix-inside">C</span>
+      <span slot="suffix">D</span>
+    </vaadin-input>
     <vaadin-button>Button</vaadin-button>
     <vaadin-button keyboard-focus>Focused</vaadin-button>
+    <vaadin-button primary>Primary</vaadin-button>
     <vaadin-button disabled>Disabled</vaadin-button>
   </div>
 

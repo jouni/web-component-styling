@@ -2,20 +2,13 @@
   <template>
     <style>
       html {
-        --valo-input__input: {
-          outline: none;
-        	box-sizing: border-box;
-        	font: inherit;
+        --valo-input__input-wrapper: {
+          box-sizing: border-box;
           line-height: 1;
-        	border: 1px solid;
-          border-color: rgba(0,0,0,.2);
-        	border-top-color: rgba(0,0,0,.3);
           background: #fff;
-        	color: #333;
-        	padding: calc(var(--valo__grid-size) / 4) calc(var(--valo__grid-size) / 2 + var(--valo__border-radius) / 3);
-        	margin: 0;
-        	border-radius: var(--valo__border-radius);
-        	box-shadow: 0 1px 0 rgba(255,255,255,.6), inset 0 1px 0 rgba(0,0,0,0.05);
+          padding: calc(var(--valo__grid-size) / 4) calc(var(--valo__grid-size) / 2 + var(--valo__border-radius) / 3);
+          border-radius: var(--valo__border-radius);
+          box-shadow: inset 0 0 0 1px rgba(0,0,0,0.2), 0 1px 0 rgba(255,255,255,.6), inset 0 1px 0 rgba(0,0,0,0.05), 0 1px 0 0 rgba(255,255,255,0.8);
           width: calc(var(--valo__grid-size) * 18);
           min-height: calc(var(--valo__grid-size) * 3);
         }
@@ -36,15 +29,27 @@
         }
 
         --vaadin-input__input: {
-          @apply --valo-input__input;
+          outline: none;
+          border: 0;
+          font: inherit;
+          line-height: 1;
+          background: transparent;
+          color: inherit;
+          margin: 0;
+          flex: 1;
+          width: 0;
+        }
+
+        --vaadin-input__input-wrapper: {
+          @apply --valo-input__input-wrapper;
         }
       }
 
-      vaadin-input[focus] {
-        --vaadin-input__input: {
-          @apply --valo-input__input;
-        	box-shadow: 0 0 0 2px rgba(0, 96, 214, 0.3);
-        	border-color: #4E95E0;
+      vaadin-input[focused] {
+        --vaadin-input__input-wrapper: {
+          @apply --valo-input__input-wrapper;
+          animation: valo-focus-pulse 0.3s alternate forwards;
+        	/*box-shadow: 0 0 0 2px rgba(0, 96, 214, 0.3);*/
         };
       }
     </style>

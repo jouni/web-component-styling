@@ -13,6 +13,16 @@
         @apply --vaadin-input__label;
       }
 
+      .wrapper,
+      .input-wrapper {
+        display: flex;
+        align-items: center;
+      }
+
+      .input-wrapper {
+        @apply --vaadin-input__input-wrapper;
+      }
+
       input {
         @apply --vaadin-input__input;
       }
@@ -29,8 +39,17 @@
         @apply --vaadin-input__input-placeholder;
       }
     </style>
+
     <label></label>
-    <input>
+    <div class="wrapper">
+      <slot name="prefix"></slot>
+      <div class="input-wrapper">
+        <slot name="prefix-inside"></slot>
+        <input>
+        <slot name="suffix-inside"></slot>
+      </div>
+      <slot name="suffix"></slot>
+    </div>
   </template>
   <script>
     class VaadinInput extends Polymer.Element {
@@ -55,12 +74,9 @@
           input.placeholder = this.getAttribute("placeholder");
         }
 
-        if (!this.hasAttribute("value") && !this.hasAttribute("placeholder")) {
-          this.setAttribute("empty", "");
-        }
-
         if(this.hasAttribute("value")) {
           input.value = this.getAttribute("value");
+          this.setAttribute("has-value", "");
         }
 
         input.addEventListener("input", (e) => this._input(e));
@@ -73,21 +89,21 @@
       }
 
       _input(e) {
-        if(e.target.value === "" && e.target.placeholder == "") {
-          this.setAttribute("empty", "")
+        if(e.target.value === "") {
+          this.removeAttribute("has-value");
         } else {
-          this.removeAttribute("empty");
+          this.setAttribute("has-value", "")
         }
         this.updateStyles();
       }
 
       _focus(e) {
-        this.setAttribute("focus", "");
+        this.setAttribute("focused", "");
         this.updateStyles();
       }
 
       _blur(e) {
-        this.removeAttribute("focus");
+        this.removeAttribute("focused");
         this.updateStyles();
       }
     }
