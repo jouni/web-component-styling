@@ -13,6 +13,16 @@
         @apply --vaadin-input__label;
       }
 
+      .wrapper,
+      .input-wrapper {
+        display: flex;
+        align-items: center;
+      }
+
+      .input-wrapper {
+        @apply --vaadin-input__input-wrapper;
+      }
+
       input {
         @apply --vaadin-input__input;
       }
@@ -29,8 +39,17 @@
         @apply --vaadin-input__input-placeholder;
       }
     </style>
+
     <label></label>
-    <input>
+    <div class="wrapper">
+      <slot name="prefix"></slot>
+      <div class="input-wrapper">
+        <slot name="prefix-inside"></slot>
+        <input>
+        <slot name="suffix-inside"></slot>
+      </div>
+      <slot name="suffix"></slot>
+    </div>
   </template>
   <script>
     class VaadinInput extends Polymer.Element {
