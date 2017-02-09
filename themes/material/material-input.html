@@ -22,6 +22,14 @@
           transform: scale(0.75);
           transition: transform 0.25s;
         }
+
+        --material-input__input-wrapper: {
+          background-image: linear-gradient(-180deg, var(--material__color__divider) 0px, transparent 1px),
+                            linear-gradient(-180deg, var(--material__color__primary), var(--material__color__primary));
+          background-repeat: no-repeat;
+          background-position: 50% 100%;
+          transition: background-size 0.25s;
+        }
       }
 
       vaadin-input {
@@ -31,9 +39,15 @@
         padding-bottom: 2px;
         /* Fix Chrome’s dancing labels */
         contain: content;
+        min-width: calc(var(--material__grid-size) * 6);
 
         --vaadin-input__label: {
           @apply --material-input__label;
+        }
+
+        --vaadin-input__input-wrapper: {
+          @apply --material-input__input-wrapper;
+          background-size: 100% 1px, 0% 2px;
         }
 
         --vaadin-input__input: {
@@ -44,10 +58,8 @@
           margin: 0;
           padding: 0;
           box-sizing: border-box;
-          width: 100%;
           outline: none;
-          width: calc(var(--material__grid-size) * 20);
-          height: calc(var(--material__grid-size) * 4 - 1px);
+          height: calc(var(--material__grid-size) * 4);
           margin: var(--material-input__input__margin);
           color: var(--material-input__input__color);
           font-size: var(--material-input__input__font-size);
@@ -72,33 +84,11 @@
           @apply --material-input__label;
           color: var(--material__color__primary);
         }
-      }
 
-      vaadin-input::before,
-      vaadin-input::after {
-        content: "";
-        display: block;
-        left: 0;
-        right: 0;
-        position: absolute;
-      }
-
-      vaadin-input::before {
-        height: 1px;
-        bottom: 1px;
-        background: var(--material__color__divider);
-      }
-
-      vaadin-input::after {
-        height: 2px;
-        bottom: 0;
-        background: var(--material__color__primary);
-        transform: scalex(0);
-        transition: transform 0.2s;
-      }
-
-      vaadin-input[focused]::after {
-        transform: scale(1);
+        --vaadin-input__input-wrapper: {
+          @apply --material-input__input-wrapper;
+          background-size: 100% 2px, 100% 2px;
+        }
       }
     </style>
   </template>

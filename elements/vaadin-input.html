@@ -5,11 +5,11 @@
   <template>
     <style>
       :host {
-        display: inline-flex;
-        flex-direction: column;
+        display: block;
       }
 
       label {
+        display: block;
         @apply --vaadin-input__label;
       }
 
@@ -20,10 +20,15 @@
       }
 
       .input-wrapper {
+        flex: 1;
         @apply --vaadin-input__input-wrapper;
       }
 
       input {
+        flex: 1;
+        /* Firefox needs both of these */
+        width: 0;
+        min-width: 0;
         @apply --vaadin-input__input;
       }
 

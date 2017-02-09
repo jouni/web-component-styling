@@ -71,6 +71,28 @@
         /*background-color: var(--material__color__accent);*/
         /*color: var(--material__color__text--primary-inverted);;*/
       }
+
+      [slot] {
+        display: inline-block;
+        padding: 0.1em 0.5em;
+        border-radius: 3px;
+        font-size: 0.9em;
+        background: rgba(0,0,0,0.1);
+      }
+
+      [slot*="prefix"] {
+        margin-right: 0.2em;
+      }
+
+      [slot*="suffix"] {
+        margin-left: 0.2em;
+      }
+
+      vaadin-input {
+        /*--vaadin-input__input-wrapper: {*/
+          width: calc(var(--material__grid-size) * 24);
+        /*}*/
+      }
     </style>
   </custom-style>
 </head>
