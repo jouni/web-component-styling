@@ -5,6 +5,8 @@
       vaadin-button {
         --material-button__font-size: calc(var(--material__font-size) - 2px);
         --material-button__border-radius: 2px;
+        --material-button__ripple-offset-x: 50%;
+        --material-button__ripple-offset-y: 50%;
       }
 
       vaadin-button {
@@ -46,10 +48,11 @@
         border-radius: 50%;
         width: 300px;
         height: 300px;
-        top: 50%;
-        left: 50%;
+        top: var(--material-button__ripple-offset-y);
+        left: var(--material-button__ripple-offset-x);
         transform: translate(-50%, -50%);
         transition: all 0.9s;
+        transform-origin: inherit;
       }
 
       vaadin-button:active::before {

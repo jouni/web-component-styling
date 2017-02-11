@@ -1,0 +1,17 @@
+<link rel="import" href="../elements/vaadin-button.html">
+<!-- <link rel="import" href="../themes/material/material.html"> -->
+
+<script>
+  class MyButton extends VaadinButton {
+    constructor() {
+      super();
+      this.addEventListener("mousedown", function(e) {
+        this.style.setProperty("--material-button__ripple-offset-x", e.offsetX + "px");
+        this.style.setProperty("--material-button__ripple-offset-y", e.offsetY + "px");
+      }.bind(this));
+    }
+  }
+
+  customElements.define(MyButton.is, MyButton);
+
+</script>
