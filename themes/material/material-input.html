@@ -1,53 +1,33 @@
 <dom-module id="material-input">
   <template>
     <style>
-      html,
-      vaadin-input {
-        --material-input__margin: 16px 0 8px;
+      html {
+        --vaadin-input: {
+          margin: calc(var(--material__grid-size) * 2) 0 var(--material__grid-size);
+          /* Reserve for the underline */
+          position: relative;
+          padding-bottom: 2px;
+          /* Fix Chrome’s dancing labels */
+          contain: content;
+        }
 
-        --material-input__label__font-scale: calc(12 / 16);
-        --material-input__label__color: var(--material__color__text--secondary);
-
-        --material-input__input__font-size: var(--material__font-size);
-        --material-input__input__color: var(--material__color__text--primary);
-        --material-input__input__height: calc(var(--material__grid-size) * 4);
-
-        --material-input__label: {
+        --vaadin-input__label: {
           line-height: 1;
-          color: var(--material-input__label__color);
-          font-size: var(--material-input__input__font-size);
+          color: var(--material__color__text--secondary);
+          font-size: var(--material__font-size);
           transform-origin: 0 50%;
-          /* Firefox can’t handle transform/scale with calc */
-          /*transform: scale(var(--material-input__label__font-scale));*/
           transform: scale(0.75);
           transition: transform 0.25s;
         }
 
-        --material-input__input-wrapper: {
-          background-image: linear-gradient(-180deg, var(--material__color__divider) 0px, transparent 1px),
+        --vaadin-input__input-wrapper: {
+          background-image: linear-gradient(-180deg, var(--material__color__divider) 1px, transparent 1px),
                             linear-gradient(-180deg, var(--material__color__primary), var(--material__color__primary));
           background-repeat: no-repeat;
           background-position: 50% 100%;
-          transition: background-size 0.25s;
-        }
-      }
-
-      vaadin-input {
-        margin: var(--material-input__margin);
-        /* Reserve for the underline */
-        position: relative;
-        padding-bottom: 2px;
-        /* Fix Chrome’s dancing labels */
-        contain: content;
-        min-width: calc(var(--material__grid-size) * 6);
-
-        --vaadin-input__label: {
-          @apply --material-input__label;
-        }
-
-        --vaadin-input__input-wrapper: {
-          @apply --material-input__input-wrapper;
           background-size: 100% 2px, 0% 2px;
+          transition: background-size 0.25s;
+          min-width: calc(var(--material__grid-size) * 6);
         }
 
         --vaadin-input__input: {
@@ -61,7 +41,7 @@
           outline: none;
           height: calc(var(--material__grid-size) * 4);
           margin: var(--material-input__input__margin);
-          color: var(--material-input__input__color);
+          color: var(--material__color__text--primary);
           font-size: var(--material-input__input__font-size);
         }
 
@@ -69,25 +49,27 @@
           color: inherit;
           opacity: 0.4;
         }
-      }
 
-      vaadin-input:not([has-value]):not([placeholder]) {
-        --vaadin-input__label: {
-          @apply --material-input__label;
+        --vaadin-input--empty__label: {
           transform: scale(1) translateY(calc(var(--material__grid-size) * 2 + 50%));
+          color: var(--material__color__text--secondary);
           pointer-events: none;
         }
-      }
 
-      vaadin-input[focused] {
-        --vaadin-input__label: {
-          @apply --material-input__label;
+        --vaadin-input--focused__label: {
           color: var(--material__color__primary);
         }
 
-        --vaadin-input__input-wrapper: {
-          @apply --material-input__input-wrapper;
+        --vaadin-input--focused__input-wrapper: {
           background-size: 100% 2px, 100% 2px;
+        }
+
+        --vaadin-input--invalid__label: {
+          color: red;
+        }
+
+        --vaadin-input--invalid__input-wrapper: {
+          background-image: linear-gradient(-180deg, red, red);
         }
       }
     </style>

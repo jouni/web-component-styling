@@ -1,15 +1,17 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
-<!-- <link rel="import" href="../bower_components/polymer/src/styling/custom-style.html"> -->
 
 <dom-module id="vaadin-input">
   <template>
     <style>
       :host {
-        display: block;
+        display: inline-flex;
+        flex-direction: column;
+        -webkit-tap-highlight-color: transparent;
+        width: 10em;
+        @apply --vaadin-input;
       }
 
       label {
-        display: block;
         @apply --vaadin-input__label;
       }
 
@@ -42,6 +44,62 @@
 
       input::placeholder {
         @apply --vaadin-input__input-placeholder;
+      }
+
+      /* Focused */
+
+      :host([focused]) label {
+        @apply --vaadin-input--focused__label;
+      }
+
+      :host([focused]) .input-wrapper {
+        @apply --vaadin-input--focused__input-wrapper;
+      }
+
+      :host([focused]) input {
+        @apply --vaadin-input--focused__input;
+      }
+
+      /* Invalid */
+
+      :host([invalid]) label {
+        @apply --vaadin-input--invalid__label;
+      }
+
+      :host([invalid]) .input-wrapper {
+        @apply --vaadin-input--invalid__input-wrapper;
+      }
+
+      :host([invalid]) input {
+        @apply --vaadin-input--invalid__input;
+      }
+
+      /* Disabled */
+
+      :host([disabled]) .input-wrapper {
+        @apply --vaadin-input--disabled__input-wrapper;
+      }
+
+      :host([disabled]) input {
+        @apply --vaadin-input--disabled__input;
+      }
+
+      :host([disabled]) input::-webkit-input-placeholder {
+        @apply --vaadin-input--disabled__input-placeholder;
+      }
+
+      :host([disabled]) input::-ms-input-placeholder {
+        @apply --vaadin-input--disabled__input-placeholder;
+      }
+
+      :host([disabled]) input::placeholder {
+        @apply --vaadin-input--disabled__input-placeholder;
+      }
+
+      /* Empty */
+
+      :host(:not([has-value]):not([placeholder])) label {
+        @apply --vaadin-input--empty__label;
       }
     </style>
 

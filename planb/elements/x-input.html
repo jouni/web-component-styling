@@ -1,0 +1,55 @@
+<link rel="import" href="../../../polymer/polymer-element.html">
+
+<!-- This needs to be loaded in order to support IE11/Edge (browsers without native Custom Properties support)-->
+<link rel="import" href="../../../polymer/lib/elements/custom-style.html">
+
+<link rel="import" href="theme-mixin.html">
+
+<dom-module id="x-input">
+  <template>
+    <style>
+      :host {
+        display: inline-flex;
+        flex-direction: column;
+        @apply --x-input;
+      }
+
+      label {
+        @apply --x-input__label;
+      }
+
+      .input-wrap {
+        display: inline-flex;
+        @apply --x-input__input-wrap;
+      }
+
+      input {
+        @apply --x-input__input;
+      }
+    </style>
+
+    <label>Label</label>
+    <div class="wrap">
+      <input value="value">
+      <slot></slot>
+    </div>
+  </template>
+  <script>
+    class XInput extends ThemeMixin(Polymer.Element) {
+      static get is() {
+        return "x-input";
+      }
+
+      ready() {
+        super.ready();
+
+        let input = this.root.querySelector("input");
+        input.addEventListener("focus", (e) => this.setAttribute("focused", ""));
+        input.addEventListener("blur", (e) => this.removeAttribute("focused"));
+      }
+    }
+
+    customElements.define(XInput.is, XInput);
+
+  </script>
+</dom-module>

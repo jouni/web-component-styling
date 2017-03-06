@@ -13,9 +13,11 @@
     document.addEventListener("touchstart", function() {},false);
   </script>
 
+  <link rel="import" href="../bower_components/polymer/polymer.html">
   <link rel="import" href="sub-view.html">
   <link rel="import" href="../elements/vaadin-input.html">
   <link rel="import" href="../elements/vaadin-button.html">
+  <link rel="import" href="../elements/vaadin-combo-box.html">
   <link rel="import" href="size-slider.html">
   <link rel="import" href="color-picker.html">
 
@@ -90,7 +92,7 @@
 
       vaadin-input {
         /*--vaadin-input__input-wrapper: {*/
-          width: calc(var(--material__grid-size) * 24);
+          /*width: calc(var(--material__grid-size) * 24);*/
         /*}*/
       }
     </style>
@@ -98,6 +100,9 @@
 </head>
 
 <body>
+  <vaadin-input label="Label"></vaadin-input>
+  <vaadin-combo-box></vaadin-combo-box>
+
   <div class="sizers">
     <size-slider property="--material__grid-size"></size-slider>
     <size-slider property="--material__font-size"></size-slider>
@@ -108,6 +113,7 @@
     <vaadin-input label="Label"></vaadin-input>
     <vaadin-input label="Label" placeholder="Placeholder"></vaadin-input>
     <vaadin-input label="Label" value="Focused" focused></vaadin-input>
+    <vaadin-input label="Label" value="Invalid" invalid></vaadin-input>
     <vaadin-input label="Suffix and prefix" value="Value">
       <span slot="prefix">A</span>
       <span slot="prefix-inside">B</span>

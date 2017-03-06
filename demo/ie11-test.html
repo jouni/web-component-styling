@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script>
+      //Polymer = { dom: 'force-shady' }
+    </script>
+    <!-- optional import for CSS mixins -->
+    <link rel="import" href="../../shadycss/apply-shim.html">
+    <!-- import custom-style -->
+    <link rel="import" href="../../polymer/lib/elements/custom-style.html">
+
+    <link rel="import" href="../test-el.html">
+
+    <dom-module id="test-el-theme" theme-for="test-el">
+      <template>
+        <style>
+          div {
+            /*color: blue;*/
+          }
+        </style>
+      </template>
+    </dom-module>
+  </head>
+  <body>
+    <custom-style>
+      <style>
+        html {
+          --test-prop: red;
+          --size: 10px;
+          --test-mixin: {
+            border: 2px solid red;
+          }
+        }
+
+        div test-el {
+          --test-prop: green;
+          --size: 20px;
+        }
+      </style>
+    </custom-style>
+    <test-el></test-el>
+
+    <div>
+      <test-el></test-el>
+    </div>
+</body>
+</html>

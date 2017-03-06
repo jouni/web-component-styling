@@ -1,5 +1,4 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
-<!-- <link rel="import" href="../bower_components/polymer/src/styling/custom-style.html"> -->
 
 <dom-module id="vaadin-button">
   <template>
@@ -18,10 +17,64 @@
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
+        @apply --vaadin-button;
       }
+
+      :host(::before) {
+        @apply --vaadin-button__pseudo-before;
+      }
+
+      :host(::after) {
+        @apply --vaadin-button__pseudo-after;
+      }
+
+      /* Disabled */
 
       :host([disabled]) {
         pointer-events: none;
+        @apply --vaadin-button--disabled;
+      }
+
+      /* Keyboard focus */
+
+      :host([keyboard-focus]) {
+        @apply --vaadin-button--focused;
+      }
+
+      :host([keyboard-focus]::before) {
+        @apply --vaadin-button--focused__pseudo-before;
+      }
+
+      :host([keyboard-focus]::after) {
+        @apply --vaadin-button--focused__pseudo-after;
+      }
+
+      /* Active */
+
+      :host(:active) {
+        @apply --vaadin-button--active;
+      }
+
+      :host(:active::before) {
+        @apply --vaadin-button--active__pseudo-before;
+      }
+
+      :host(:active::after) {
+        @apply --vaadin-button--active__pseudo-after;
+      }
+
+      /* Hover (not active) */
+
+      :host(:hover:not(:active)) {
+        @apply --vaadin-button--hover;
+      }
+
+      :host(:hover:not(:active)::before) {
+        @apply --vaadin-button--hover__pseudo-before;
+      }
+
+      :host(:hover:not(:active)::after) {
+        @apply --vaadin-button--hover__pseudo-after;
       }
     </style>
     <slot></slot>

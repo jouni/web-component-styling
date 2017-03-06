@@ -1,0 +1,27 @@
+<link rel="import" href="../../polymer/polymer-element.html">
+<link rel="import" href="elements/x-combo-box.html">
+
+
+<dom-module id="sub-view">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <div class="shadow">
+      <h3>Inside shadow DOM</h3>
+      <x-input></x-input>
+      <x-combo-box></x-combo-box>
+    </div>
+
+    <slot></slot>
+  </template>
+  <script>
+    class SubView extends Polymer.Element {
+      static get is() { return "sub-view"; }
+    }
+    customElements.define(SubView.is, SubView);
+  </script>
+</dom-module>

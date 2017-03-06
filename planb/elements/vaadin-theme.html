@@ -1,0 +1,58 @@
+<link rel="import" href="../../../polymer/polymer-element.html">
+
+<dom-module id="vaadin-theme">
+  <template>
+    <slot></slot>
+  </template>
+  <script>
+    class VaadinTheme extends Polymer.Element {
+      static get is() {
+        return "vaadin-theme";
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+
+        if (!VaadinTheme.themes) {
+          VaadinTheme.themes = [];
+        }
+
+        var style = this.querySelector("style");
+        this.styleElement = style;
+        this.removeChild(style);
+        VaadinTheme.themes.push(this);
+      }
+
+      // static finalize() {
+      //   super.finalize();
+
+      // Only perform this for Polymer elements
+      // if (this.is) {
+      //   let themes = [];
+      //   this.searchThemes(themes, document);
+      //   console.log(themes);
+      // }
+      // }
+
+      // static searchThemes(themes, doc) {
+      //   if ('import' in document.createElement('link')) {
+      //     // Native HTML imports support (Chromium)
+      //     let nodelist = doc.querySelectorAll(`vaadin-theme[for="${this.is}"]`);
+      //     for (var i = nodelist.length; i--; themes.unshift(nodelist[i]));
+      //
+      //     let imports = doc.querySelectorAll(`link[rel="import"]`);
+      //     for (var i = 0; i < imports.length; i++) {
+      //       this.searchThemes(themes, imports[i].import);
+      //     }
+      //   } else {
+      //     // Other browsers
+      //     let nodelist = doc.querySelectorAll(`vaadin-theme[for="${this.is}"]`);
+      //     for (var i = nodelist.length; i--; themes.unshift(nodelist[i]));
+      //   }
+      // }
+    }
+
+    customElements.define(VaadinTheme.is, VaadinTheme);
+
+  </script>
+</dom-module>

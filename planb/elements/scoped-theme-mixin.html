@@ -1,0 +1,71 @@
+<!-- <link rel="import" href="elements/vaadin-theme.html"> -->
+
+<script>
+  const ScopedThemeMixin = Element => class extends Element {
+
+    ready() {
+      super.ready();
+
+      if (typeof VaadinTheme !== 'undefined') {
+        VaadinTheme.themes.forEach(function(theme) {
+          if (theme.getAttribute("for") === this.nodeName.toLowerCase()) {
+            let pos = theme.compareDocumentPosition(this);
+            if (pos & 6) {
+              var style = theme.styleElement.cloneNode(true);
+              this.root.appendChild(style);
+              console.log(this);
+            }
+          }
+        }.bind(this));
+      }
+    }
+
+    connectedCallback() {
+      super.connectedCallback();
+
+      // let modules = Polymer.DomModule.prototype.modules;
+      //
+      // for (var module in modules) {
+      //   if (modules[module].getAttribute("theme-for") === this.nodeName.toLowerCase()) {
+      //     console.log(modules[module].ownerDocument);
+      //     let pos = modules[module].compareDocumentPosition(this);
+      //     console.log(pos);
+      //     if (pos == 2 ||  pos == 4) {
+      //       // Preceding or following in the same document tree
+      //       console.log(module, this.nodeName);
+      //     }
+      //     // let styleEl = document.createElement("style");
+      //     // styleEl.setAttribute("include", module);
+      //     // this.appendChild(styleEl);
+      //   }
+
+      // Only perform this for Polymer elements
+      // if (this.is) {
+      //   let themes = [];
+      //   this.searchThemes(themes, document);
+      //   console.log(themes);
+      // }
+      // }
+
+      // static searchThemes(themes, doc) {
+      //   if ('import' in document.createElement('link')) {
+      //     // Native HTML imports support (Chromium)
+      //     let nodelist = doc.querySelectorAll(`vaadin-theme[for="${this.is}"]`);
+      //     for (var i = nodelist.length; i--; themes.unshift(nodelist[i]));
+      //
+      //     let imports = doc.querySelectorAll(`link[rel="import"]`);
+      //     for (var i = 0; i < imports.length; i++) {
+      //       this.searchThemes(themes, imports[i].import);
+      //     }
+      //   } else {
+      //     // Other browsers
+      //     let nodelist = doc.querySelectorAll(`vaadin-theme[for="${this.is}"]`);
+      //     for (var i = nodelist.length; i--; themes.unshift(nodelist[i]));
+      //   }
+      // }
+      // }
+    }
+
+  };
+
+</script>

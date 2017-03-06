@@ -57,8 +57,7 @@
           document.documentElement.style.setProperty(this.property, value);
           var props = {};
           props[this.property] = value;
-          ShadyCSS.updateStyles(props);
-          // ShadyCSS.updateStyles();
+          Polymer.updateStyles(props);
         }
       }
 

@@ -1,5 +1,5 @@
 {
-  "name": "elements-theme-2016",
+  "name": "vaadin-theme",
   "authors": [
     "Jouni Koivuviita <jouni@jouni.me>"
   ],
@@ -17,5 +17,6 @@
   ],
   "dependencies": {
     "polymer": "2.0-preview"
-  }
+  },
+  "private": true
 }

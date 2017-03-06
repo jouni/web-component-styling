@@ -1,0 +1,32 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="vaadin-input.html">
+
+<dom-module id="vaadin-combo-box">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+        width: 10em;
+      }
+
+      vaadin-input {
+        width: 100%;
+      }
+    </style>
+
+    <vaadin-input id="input" label="Select a value">
+      <button slot="suffix-inside">&times;</button>
+      <button slot="suffix-inside">▾</button>
+    </vaadin-input>
+  </template>
+  <script>
+    class VaadinComboBox extends Polymer.Element {
+      static get is() {
+        return "vaadin-combo-box";
+      }
+    }
+
+    customElements.define(VaadinComboBox.is, VaadinComboBox);
+
+  </script>
+</dom-module>

@@ -1,0 +1,42 @@
+<script>
+  const ThemeMixin = Element => class extends Element {
+
+    static get template() {
+      if (super.template) {
+        if (!this._memoizedTemplate) {
+          this._memoizedTemplate = super.template.cloneNode(true);
+
+          let modules = Polymer.DomModule.prototype.modules;
+
+          // let styleElementsInTemplate = this._memoizedTemplate.content.querySelectorAll("style");
+          // let lastStyleElementInTemplate;
+          // if(styleElementsInTemplate.length > 1) {
+          //   lastStyleElementInTemplate = styleElementsInTemplate[styleElementsInTemplate.length - 1];
+          // }
+
+          for (var module in modules) {
+            if (modules[module].getAttribute("theme-for") === this.is) {
+              let styleEl = document.createElement("style");
+              styleEl.setAttribute("include", module);
+
+              // if (lastStyleElementInTemplate) {
+              //   // Insert new styles before the last style element, so that those styles can be
+              //   // overridden. This gives the possiblity for the elements themselves to declare CSS
+              //   // mixins in a separate style element which give developers the possibility to
+              //   // override theme styles (injected by this mixin).
+              //   this._memoizedTemplate.content.insertBefore(styleEl, lastStyleElementInTemplate);
+              // } else {
+              //   // No style tags, just append
+                this._memoizedTemplate.content.appendChild(styleEl);
+              // }
+            }
+          }
+        }
+
+        return this._memoizedTemplate;
+      }
+    }
+
+  };
+
+</script>

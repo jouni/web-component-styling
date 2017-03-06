@@ -1,0 +1,74 @@
+<!-- Global theme variables -->
+<custom-style>
+  <style>
+    html {
+      --theme-grid-size: 8px;
+      --theme-font-size: 14px;
+      --theme-font-family: Roboto, sans-serif;
+      --theme-primary-color: orange;
+
+      font-family: var(--theme-font-family);
+      font-size: var(--theme-font-size);
+    }
+  </style>
+</custom-style>
+
+
+<dom-module id="x-input-theme" theme-for="x-input">
+  <template>
+    <style>
+      :host {
+        --x-input-theme-background-color: #666;
+
+        font-family: var(--theme-font-family);
+        font-size: var(--theme-font-size);
+      }
+
+      label {
+        font-size: 0.9em;
+        line-height: 1;
+        margin-bottom: var(--theme-grid-size);
+        font-weight: 300;
+        color: #888;
+      }
+
+      .wrap {
+        background-color: var(--x-input-theme-background-color);
+        color: #fff;
+        border: 1px solid #000;
+        border-radius: 4px;
+      }
+
+      :host([focused]) .wrap {
+        box-shadow: 0 0 0 2px var(--theme-primary-color);
+      }
+
+      input {
+        font: inherit;
+        color: inherit;
+        background-color: transparent;
+        border: 0;
+        border-radius: inherit;
+        margin: 0;
+        padding: var(--theme-grid-size);
+        outline: 0;
+      }
+    </style>
+  </template>
+</dom-module>
+
+
+<dom-module id="x-combo-box-theme" theme-for="x-combo-box">
+  <template>
+    <style>
+      button {
+        width: calc(var(--theme-grid-size) * 4);
+        font: inherit;
+        color: var(--theme-primary-color);
+        background-color: transparent;
+        border: 0;
+        outline: 0;
+      }
+    </style>
+  </template>
+</dom-module>
