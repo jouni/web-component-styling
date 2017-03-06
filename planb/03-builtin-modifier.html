@@ -3,22 +3,23 @@
 
 <head>
   <meta charset="utf-8">
-  <title>setting a global theme</title>
+  <title>built-in modifier</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="../../webcomponentsjs/webcomponents-loader.js" charset="utf-8"></script>
 
   <link rel="import" href="elements/x-combo-box.html">
   <link rel="import" href="sub-view.html">
 
-  <!-- Apply theme globally -->
+  <!-- Apply default theme globally -->
   <link rel="import" href="theme.html">
 </head>
 
 <body>
-  <h2>01: Global default theme</h2>
+  <h2>03: Built-in modifier</h2>
 
-  <x-input></x-input>
-  <x-combo-box></x-combo-box>
+  <p>Small style</p>
+  <x-input class="small"></x-input>
+  <x-combo-box class="small"></x-combo-box>
 
   <sub-view></sub-view>
 </body>

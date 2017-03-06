@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>custom modifier</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../../webcomponentsjs/webcomponents-loader.js" charset="utf-8"></script>
+
+  <link rel="import" href="elements/x-combo-box.html">
+  <link rel="import" href="sub-view.html">
+
+  <!-- Apply default theme globally -->
+  <link rel="import" href="theme.html">
+</head>
+
+<body>
+  <h2>04: Custom modifier</h2>
+
+  <p>Custom style</p>
+
+  <dom-module id="x-input-custom-theme" theme-for="x-input">
+    <template>
+      <style>
+        :host([focused]) .input-wrap {
+          /* TODO it's required to copy-paste the values of the properties any mixin wants to
+             override from the global theme, which is not very maintainable in the long run */
+          box-shadow: 0 0 0 2px var(--theme-primary-color);
+          border: 1px solid #444;
+
+          @apply --x-input-custom-theme-focus;
+        }
+      </style>
+    </template>
+  </dom-module>
+
+  <custom-style>
+    <style>
+    .custom {
+      --theme-primary-color: rgb(27, 219, 127);
+
+      --x-input-theme-input-background-color: #FFF;
+      --x-input-theme-input-color: #000;
+      --x-input-theme-input-border: 2px solid var(--theme-primary-color);
+
+      --x-input-custom-theme-focus: {
+        box-shadow: none;
+        border: 2px solid #000;
+      }
+
+      --x-input__input: {
+        text-transform: uppercase;
+      }
+    }
+    </style>
+  </custom-style>
+
+  <x-input class="custom"></x-input>
+  <x-combo-box class="custom"></x-combo-box>
+
+  <sub-view></sub-view>
+</body>
+
+</html>

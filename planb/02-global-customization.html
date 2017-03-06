@@ -7,45 +7,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="../../webcomponentsjs/webcomponents-loader.js" charset="utf-8"></script>
 
-  <!-- The order needs to be like this, apply-shim before custom-style -->
-  <script src="../../shadycss/scoping-shim.min.js" charset="utf-8"></script>
-  <link rel="import" href="../../shadycss/apply-shim.html">
-  <link rel="import" href="../../polymer/lib/elements/custom-style.html">
-
   <link rel="import" href="elements/x-combo-box.html">
   <link rel="import" href="sub-view.html">
 
-  <!-- Apply theme globally -->
+  <!-- Apply default theme globally -->
   <link rel="import" href="theme.html">
 
-
-  <!-- Add new extension points to the components (using our internal API, we will not guarantee
-  that the CSS will match) -->
-  <dom-module id="mytheme" theme-for="x-input">
-    <template>
-      <style>
-        input {
-          font-weight: var(--mytheme-input-font-weight, 300);
-        }
-      </style>
-    </template>
-  </dom-module>
+  <!-- Import a custom font -->
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
 
   <custom-style>
     <style>
       html {
         --theme-grid-size: 12px;
-        --theme-font-size: 18px;
-        --theme-font-family: Roboto, Helvetica Neue, sans-serif;
-        --theme-primary-color: magenta;
-      }
+        --theme-font-size: 20px;
+        --theme-font-family: 'PT Sans Narrow', sans-serif;
+        --theme-primary-color: blue;
 
-      x-combo-box {
-        --mytheme-input-font-weight: 600;
-
-        --x-combo-box__button: {
-          color: blue !important;
-        }
+        --x-input-theme-input-background-color: #eee;
+        --x-input-theme-input-color: #555;
+        --x-input-theme-input-border: 1px solid #aaa;
       }
     </style>
   </custom-style>

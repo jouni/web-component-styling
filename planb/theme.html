@@ -4,11 +4,15 @@
     html {
       --theme-grid-size: 8px;
       --theme-font-size: 14px;
-      --theme-font-family: Roboto, sans-serif;
+      --theme-font-family: "Roboto", "Helvetica Neue", sans-serif;
       --theme-primary-color: orange;
 
       font-family: var(--theme-font-family);
       font-size: var(--theme-font-size);
+
+      --x-input-theme-label: {
+        color: #888;
+      }
     }
   </style>
 </custom-style>
@@ -18,8 +22,6 @@
   <template>
     <style>
       :host {
-        --x-input-theme-background-color: #666;
-
         font-family: var(--theme-font-family);
         font-size: var(--theme-font-size);
       }
@@ -29,17 +31,17 @@
         line-height: 1;
         margin-bottom: var(--theme-grid-size);
         font-weight: 300;
-        color: #888;
+        @apply --x-input-theme-label;
       }
 
-      .wrap {
-        background-color: var(--x-input-theme-background-color);
-        color: #fff;
-        border: 1px solid #000;
+      .input-wrap {
+        background-color: var(--x-input-theme-input-background-color, #666);
+        color: var(--x-input-theme-input-color, #FFF);
+        border: var(--x-input-theme-input-border, 1px solid #444);
         border-radius: 4px;
       }
 
-      :host([focused]) .wrap {
+      :host([focused]) .input-wrap {
         box-shadow: 0 0 0 2px var(--theme-primary-color);
       }
 
@@ -68,6 +70,18 @@
         background-color: transparent;
         border: 0;
         outline: 0;
+      }
+    </style>
+  </template>
+</dom-module>
+
+
+<dom-module id="x-theme-commons" theme-for="x-input x-combo-box">
+  <template>
+    <style>
+      :host(.small) {
+        --theme-grid-size: 5px;
+        --theme-font-size: 11px;
       }
     </style>
   </template>
