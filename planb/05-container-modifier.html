@@ -19,37 +19,31 @@
 
   <custom-style>
     <style>
-    html {
-      --theme-grid-size: 10px;
-      --theme-font-size: 16px;
-    }
-
     .container {
       background-color: #666;
       padding: calc(var(--theme-grid-size) * 3);
       color: #eee;
 
-      --theme-primary-color: rgb(122, 136, 255);
-      --theme-grid-size: 6px;
-      --theme-font-size: 13px;
+    }
 
-      --x-input-theme-label: {
-        color: #fff;
-      }
+    /* Custom properties need to modified at custom element boundaries in order for the polyfill to
+       work (so we can’t have these properties declared only for `.container`)*/
+    .container x-input,
+    .container x-combo-box {
+      --theme-primary-color: #eee;
+      --theme-grid-size: 10px;
+      --theme-font-size: 20px;
+      --theme-font-family: monospace;
 
       --x-input-theme-input-background-color: rgba(255,255,255,0.2);
       --x-input-theme-input-border: 0;
-
-      --x-combo-box__button: {
-        --theme-primary-color: inherit;
-      }
     }
     </style>
   </custom-style>
 
   <div class="container">
-    <x-input class="custom"></x-input>
-    <x-combo-box class="custom"></x-combo-box>
+    <x-input></x-input>
+    <x-combo-box></x-combo-box>
   </div>
 
     <sub-view></sub-view>

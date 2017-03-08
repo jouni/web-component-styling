@@ -6,17 +6,21 @@
       --theme-font-size: 14px;
       --theme-font-family: "Roboto", "Helvetica Neue", sans-serif;
       --theme-primary-color: orange;
+      --theme-border-radius: 4px;
 
       font-family: var(--theme-font-family);
       font-size: var(--theme-font-size);
-
-      --x-input-theme-label: {
-        color: #888;
-      }
     }
+
   </style>
 </custom-style>
 
+<!--
+NOTE: if the user desides to add more "theme modules" using HTML imports, they will work
+differently in polyfilled browsers than in Chromium. In Chrome, the source order is preserved
+correctly, and later "theme modules" are added later in the element template. In polyfilled
+browsers, the source order is reversed.
+-->
 
 <dom-module id="x-input-theme" theme-for="x-input">
   <template>
@@ -24,6 +28,8 @@
       :host {
         font-family: var(--theme-font-family);
         font-size: var(--theme-font-size);
+        /* Custom theme modules should override this (see comment above) */
+        outline: none;
       }
 
       label {
@@ -31,14 +37,13 @@
         line-height: 1;
         margin-bottom: var(--theme-grid-size);
         font-weight: 300;
-        @apply --x-input-theme-label;
       }
 
       .input-wrap {
         background-color: var(--x-input-theme-input-background-color, #666);
         color: var(--x-input-theme-input-color, #FFF);
         border: var(--x-input-theme-input-border, 1px solid #444);
-        border-radius: 4px;
+        border-radius: var(--theme-border-radius);
       }
 
       :host([focused]) .input-wrap {
