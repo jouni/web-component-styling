@@ -21,10 +21,14 @@
       button {
         @apply --x-combo-box__button;
       }
+
+      button::before {
+        content: "▾";
+      }
     </style>
 
     <x-input>
-      <button>▾</button>
+      <button></button>
     </x-input>
   </template>
   <script>

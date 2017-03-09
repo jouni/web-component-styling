@@ -76,6 +76,18 @@ browsers, the source order is reversed.
         border: 0;
         outline: 0;
       }
+
+      button::before {
+        content: "";
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-width: calc(var(--theme-grid-size) / 1.5);
+        border-bottom-width: 0;
+        border-style: solid;
+        border-color: transparent;
+        border-top-color: inherit;
+      }
     </style>
   </template>
 </dom-module>
