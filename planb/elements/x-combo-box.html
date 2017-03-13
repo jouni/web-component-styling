@@ -1,7 +1,6 @@
 <link rel="import" href="../../../polymer/polymer-element.html">
 
 <!-- This needs to be loaded in order to support IE11/Edge (browsers without native Custom Properties support)-->
-<link rel="import" href="../../../shadycss/apply-shim.html">
 <link rel="import" href="../../../polymer/lib/elements/custom-style.html">
 
 <link rel="import" href="x-input.html">
@@ -14,21 +13,14 @@
         display: inline-flex;
       }
 
-      x-input {
-        @apply --x-combo-box__x-input;
-      }
-
-      button {
-        @apply --x-combo-box__button;
-      }
-
-      button::before {
+      [part="toggle-button"]::before {
         content: "▾";
       }
     </style>
 
-    <x-input>
-      <button></button>
+    <x-input part="text-input">
+      <slot name="suffix"></slot>
+      <button part="toggle-button"></button>
     </x-input>
   </template>
   <script>

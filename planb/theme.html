@@ -28,36 +28,39 @@ browsers, the source order is reversed.
       :host {
         font-family: var(--theme-font-family);
         font-size: var(--theme-font-size);
-        /* Custom theme modules should override this (see comment above) */
-        outline: none;
       }
 
-      label {
+      [part="label"] {
         font-size: 0.9em;
         line-height: 1;
         margin-bottom: var(--theme-grid-size);
         font-weight: 300;
       }
 
-      .input-wrap {
+      [part="input-wrapper"] {
         background-color: var(--x-input-theme-input-background-color, #666);
         color: var(--x-input-theme-input-color, #FFF);
         border: var(--x-input-theme-input-border, 1px solid #444);
         border-radius: var(--theme-border-radius);
+        height: calc(var(--theme-grid-size) * 5);
+        box-sizing: border-box;
       }
 
-      :host([focused]) .input-wrap {
+      :host([focused]) [part="input-wrapper"] {
         box-shadow: 0 0 0 2px var(--theme-primary-color);
       }
 
-      input {
+      [part="input-element"] {
+        height: 100%;
+        box-sizing: border-box;
         font: inherit;
         color: inherit;
         background-color: transparent;
+        padding: var(--theme-grid-size);
+        margin: 0;
         border: 0;
         border-radius: inherit;
-        margin: 0;
-        padding: var(--theme-grid-size);
+        /* Custom theme modules should override this (see comment above) */
         outline: 0;
       }
     </style>
@@ -68,20 +71,23 @@ browsers, the source order is reversed.
 <dom-module id="x-combo-box-theme" theme-for="x-combo-box">
   <template>
     <style>
-      button {
+      [part="toggle-button"] {
         width: calc(var(--theme-grid-size) * 4);
         font: inherit;
         color: var(--theme-primary-color);
         background-color: transparent;
         border: 0;
         outline: 0;
+        margin: 0;
+        margin-left: 0;
+        padding: 0;
       }
 
-      button::before {
+      [part="toggle-button"]::before {
         content: "";
         display: inline-block;
         width: 0;
-        height: 0;
+        height: calc(var(--theme-grid-size) / 4);
         border-width: calc(var(--theme-grid-size) / 1.5);
         border-bottom-width: 0;
         border-style: solid;
@@ -96,7 +102,7 @@ browsers, the source order is reversed.
 <dom-module id="x-theme-commons" theme-for="x-input x-combo-box">
   <template>
     <style>
-      :host(.small) {
+      :host([theme-style~="small"]) {
         --theme-grid-size: 5px;
         --theme-font-size: 11px;
       }

@@ -1,8 +1,9 @@
 <dom-module id="custom-theme-module1" theme-for="x-input">
   <template>
     <style>
-      :host {
+      :host [part="input-element"] {
         outline: 1px solid red;
+        color: var(--custom-theme-input-color);
       }
     </style>
   </template>
