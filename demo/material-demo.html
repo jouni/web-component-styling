@@ -6,7 +6,7 @@
   <title>Material theme proto</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js" charset="utf-8"></script>
+  <script src="../bower_components/webcomponentsjs/webcomponents-loader.js" charset="utf-8"></script>
 
   <!-- Enable :active styles for iOS -->
   <script>
@@ -27,7 +27,7 @@
   <custom-style>
     <style>
       body {
-        margin: calc(var(--material__grid-size) * 2);
+        margin: calc(var(--grid-size) * 2);
         padding-top: 80px;
         background: var(--material__color__gray--50);
       }
@@ -51,20 +51,20 @@
       }
 
       .container > * {
-        margin: 0 var(--material__grid-size) calc(var(--material__grid-size) * 2) 0;
+        margin: 0 var(--grid-size) calc(var(--grid-size) * 2) 0;
       }
 
       .scope {
-        --material__grid-size: 6px;
-        --material__font-size: 12px;
+        --grid-size: 6px;
+        --font-size: 12px;
         outline: 1px dashed;
-        padding: calc(var(--material__grid-size) * 2);
+        padding: calc(var(--grid-size) * 2);
       }
 
       sub-view > * {
-        --material__grid-size: 10px;
-        --material__font-size: 18px;
-        --material__color__primary: orange;
+        --grid-size: 10px;
+        --font-size: 18px;
+        --primary-color: orange;
       }
 
       sub-view vaadin-button[raised] {
@@ -90,7 +90,7 @@
 
       vaadin-input {
         /*--vaadin-input__input-wrapper: {*/
-          width: calc(var(--material__grid-size) * 24);
+          width: calc(var(--grid-size) * 24);
         /*}*/
       }
     </style>
@@ -99,9 +99,9 @@
 
 <body>
   <div class="sizers">
-    <size-slider property="--material__grid-size"></size-slider>
-    <size-slider property="--material__font-size"></size-slider>
-    <color-picker property="--material__color__primary"></color-picker>
+    <size-slider property="--grid-size"></size-slider>
+    <size-slider property="--font-size"></size-slider>
+    <color-picker property="--primary-color"></color-picker>
   </div>
 
   <div class="container">

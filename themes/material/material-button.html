@@ -3,7 +3,7 @@
     <style>
       html,
       vaadin-button {
-        --material-button__font-size: calc(var(--material__font-size) - 2px);
+        --material-button__font-size: calc(var(--font-size) - 2px);
         --material-button__border-radius: 2px;
         --material-button__ripple-offset-x: 50%;
         --material-button__ripple-offset-y: 50%;
@@ -11,14 +11,14 @@
 
       vaadin-button {
         border-radius: var(--material-button__border-radius);
-        min-height: calc(var(--material__grid-size) * 4.5);
-        min-width: calc(var(--material__grid-size) * 8);
+        min-height: calc(var(--grid-size) * 4.5);
+        min-width: calc(var(--grid-size) * 8);
         color: var(--material__color__text--primary);
         font-family: var(--material__font-family);
         text-transform: uppercase;
         font-size: var(--material-button__font-size);
         font-weight: 500;
-        padding: var(--material__grid-size) calc(var(--material__grid-size) * 2);
+        padding: var(--grid-size) calc(var(--grid-size) * 2);
         position: relative;
         overflow: hidden;
         transition: background-color: 0.3s;
@@ -72,7 +72,7 @@
       }
 
       vaadin-button[primary] {
-        color: var(--material__color__primary);
+        color: var(--primary-color);
       }
 
       vaadin-button[raised] {
@@ -83,7 +83,7 @@
 
       vaadin-button[raised][primary]:not([disabled]) {
         color: var(--material__color__text--primary-inverted);
-        background-color: var(--material__color__primary);
+        background-color: var(--primary-color);
       }
 
       vaadin-button[primary]:active::before,

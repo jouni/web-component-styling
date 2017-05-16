@@ -5,10 +5,32 @@
     <style>
       :host {
         display: inline-flex;
-        flex-direction: column;
+        /*flex-direction: column;*/
+        align-items: center;
       }
       label {
-        font-size: 12px;
+        font-size: 13px;
+        font-family: -apple-system, BlinkMacSystemFont;
+        font-weight: 500;
+        min-width: 130px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        text-transform: capitalize;
+      }
+
+      label span {
+        /*display: none;*/
+        white-space: nowrap;
+      }
+
+      .value {
+        opacity: 0.3;
+      }
+
+      input {
+        width: 100%;
+        margin-left: 1em;
       }
     </style>
     <label></label>
@@ -21,17 +43,15 @@
         return "size-slider";
       }
 
-      static get config() {
+      static get properties() {
         return {
-          properties: {
-            property: {
-              type: String,
-              observer: "_propertyChanged"
-            },
-            value: {
-              type: String,
-              observer: "_valueChanged"
-            }
+          property: {
+            type: String,
+            observer: "_propertyChanged"
+          },
+          value: {
+            type: String,
+            observer: "_valueChanged"
           }
         };
       }
@@ -47,18 +67,22 @@
             var initialValue = parseInt(getComputedStyle(document.documentElement).getPropertyValue(property));
             this.value = initialValue;
             // this.root.querySelector("input").min = Math.floor(this.value / 2);
-            this.root.querySelector("input").max = Math.ceil(this.value * 3);
-          }.bind(this), 100);
+            if (this.hasAttribute("max")) {
+              this.root.querySelector("input").max = this.getAttribute("max");
+            } else {
+              this.root.querySelector("input").max = Math.ceil(this.value * 2);
+            }
+          }.bind(this), 200);
         }
       }
 
       _valueChanged(value, oldValue) {
         if(value !== oldValue) {
           document.documentElement.style.setProperty(this.property, value + "px");
-          this.root.querySelector("label").innerHTML = this.property + " " + this.value + "px";
+          this.root.querySelector("label").innerHTML = "<span class=name>" + this.property.substring(2).replace("-", " ") + "</span> <span class=value>" + this.value + "px</span>";
           var props = {};
           props[this.property] = value + "px";
-          ShadyCSS.updateStyles(props);
+          // ShadyCSS.updateStyles(props);
         }
       }
 

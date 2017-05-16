@@ -7,19 +7,19 @@
 
       vaadin-button {
         font-family: var(--valo__font-family);
-        font-size: var(--valo__font-size);
+        font-size: var(--font-size);
         line-height: 1;
-        font-weight: 500;
+        font-weight: 600;
         color: #2F2F30;
         text-shadow: 0 1px 0 rgba(255,255,255,.4);
-        padding: calc(var(--valo__grid-size) / 1.5) calc(var(--valo__grid-size) * 1.5);
-        border-radius: var(--valo__border-radius);
+        padding: calc(var(--grid-size) / 1.5) calc(var(--grid-size) * 1.2 + var(--border-radius) / 3);
+        border-radius: var(--border-radius);
         box-sizing: border-box;
-        background-color: var(--valo__color__base);
+        background-color: var(--valo-button__color__base, var(--valo__color__base));
         background-image: var(--valo__gradient);
         cursor: pointer;
-        box-shadow: inset 0 0 0 1px rgba(0,0,0,0.2), inset 0 2px 0 0 rgba(255,255,255,0.1), 0 1px 0 0 rgba(255,255,255,0.8);
-        min-height: calc(var(--valo__grid-size) * 3);
+        box-shadow: inset 0 0 0 1px rgba(0,0,0,0.2), inset 0 2px 0 0 rgba(255,255,255,0.1), 0 1px 2px rgba(0,0,0,0.1);
+        min-height: calc(var(--grid-size) * 3);
         position: relative;
       }
 
@@ -35,14 +35,14 @@
       }
 
       vaadin-button:active {
-        background-image: linear-gradient(var(--valo__color__gradient--end), var(--valo__color__gradient--end));
+        background-image: linear-gradient(var(--gradient-end-color), var(--gradient-end-color));
         text-shadow: 0 1px 0 rgba(255,255,255,0.4);
         box-shadow: inset 0 0 0 1px rgba(0,0,0,0.2), inset 0 1px 2px 0 rgba(0,0,0,0.3);
       }
 
       vaadin-button[primary] {
-        background-color: var(--valo__color__primary);
-        color: var(--valo__color__primary-inverted);
+        background-color: var(--primary-color);
+        color: var(--primary-color-inverted);
         text-shadow: 0 1px 0 rgba(0,0,0,0.2);
       }
 

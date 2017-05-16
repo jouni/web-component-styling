@@ -1,26 +1,26 @@
 <custom-style>
   <style>
     html {
-      --valo__font-family: "Helvetica Neue", sans-serif;
-      --valo__font-size: 15px;
-      --valo__grid-size: 10px;
-      --valo__border-radius: 4px;
+      --valo__font-family: "Open Sans", "Helvetica Neue", sans-serif;
+      --font-size: 16px;
+      --grid-size: 12px;
+      --border-radius: 4px;
 
       --valo__color__base: #f8f8f8;
-      --valo__color__primary: #0067e0;
-      --valo__color__primary--opacity-30: rgba(0, 103, 224, 0.3);
-      --valo__color__primary-inverted: #fff;
-      --valo__color__gradient--start: rgba(255,255,255,0.1);
-      --valo__color__gradient--end: rgba(0,0,0,0.1);
-      --valo__gradient: linear-gradient(var(--valo__color__gradient--start), var(--valo__color__gradient--end));
+      --primary-color: #0067e0;
+      --primary-color--opacity-30: rgba(0, 103, 224, 0.3);
+      --primary-color-inverted: #fff;
+      --gradient-start-color: rgba(255,255,255,0.1);
+      --gradient-end-color: rgba(0,0,0,0.1);
+      --valo__gradient: linear-gradient(var(--gradient-start-color), var(--gradient-end-color));
     }
 
     @keyframes valo-focus-pulse {
       0% {
-        box-shadow: 0 0 0 1px var(--valo__color__primary--opacity-30);
+        box-shadow: 0 0 0 1px var(--primary-color-30pct);
       }
       100% {
-        box-shadow: 0 0 0 3px var(--valo__color__primary--opacity-30);
+        box-shadow: 0 0 0 3px var(--primary-color-30pct);
       }
     }
   </style>

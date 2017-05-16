@@ -8,9 +8,9 @@
         --material-input__label__font-scale: calc(12 / 16);
         --material-input__label__color: var(--material__color__text--secondary);
 
-        --material-input__input__font-size: var(--material__font-size);
+        --material-input__input__font-size: var(--font-size);
         --material-input__input__color: var(--material__color__text--primary);
-        --material-input__input__height: calc(var(--material__grid-size) * 4);
+        --material-input__input__height: calc(var(--grid-size) * 4);
 
         --material-input__label: {
           line-height: 1;
@@ -20,15 +20,15 @@
           /* Firefox can’t handle transform/scale with calc */
           /*transform: scale(var(--material-input__label__font-scale));*/
           transform: scale(0.75);
-          transition: transform 0.25s;
+          transition: transform 0.18s;
         }
 
         --material-input__input-wrapper: {
           background-image: linear-gradient(-180deg, var(--material__color__divider) 0px, transparent 1px),
-                            linear-gradient(-180deg, var(--material__color__primary), var(--material__color__primary));
+                            linear-gradient(-180deg, var(--primary-color), var(--primary-color));
           background-repeat: no-repeat;
           background-position: 50% 100%;
-          transition: background-size 0.25s;
+          transition: background-size 0.18s;
         }
       }
 
@@ -39,7 +39,7 @@
         padding-bottom: 2px;
         /* Fix Chrome’s dancing labels */
         contain: content;
-        min-width: calc(var(--material__grid-size) * 6);
+        min-width: calc(var(--grid-size) * 6);
 
         --vaadin-input__label: {
           @apply --material-input__label;
@@ -59,7 +59,7 @@
           padding: 0;
           box-sizing: border-box;
           outline: none;
-          height: calc(var(--material__grid-size) * 4);
+          height: calc(var(--grid-size) * 4);
           margin: var(--material-input__input__margin);
           color: var(--material-input__input__color);
           font-size: var(--material-input__input__font-size);
@@ -71,10 +71,10 @@
         }
       }
 
-      vaadin-input:not([has-value]):not([placeholder]) {
+      vaadin-input:not([has-value]):not([placeholder]):not([focused]) {
         --vaadin-input__label: {
           @apply --material-input__label;
-          transform: scale(1) translateY(calc(var(--material__grid-size) * 2 + 50%));
+          transform: scale(1) translateY(calc(var(--grid-size) * 2 + 50%));
           pointer-events: none;
         }
       }
@@ -82,7 +82,7 @@
       vaadin-input[focused] {
         --vaadin-input__label: {
           @apply --material-input__label;
-          color: var(--material__color__primary);
+          color: var(--primary-color);
         }
 
         --vaadin-input__input-wrapper: {
